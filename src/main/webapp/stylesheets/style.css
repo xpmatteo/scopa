@@ -1,0 +1,18 @@
+body {
+  font-family: arial, sans-serif;
+  font-size: 10pt;
+  color: #444;
+}
+
+#content {
+  width: 50em;
+  margin: 0px auto;
+}
+
+.field_with_errors {
+  background: pink;
+}
+
+.deleted {
+  text-decoration: line-through;
+}

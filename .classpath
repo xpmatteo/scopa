@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test/resources"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/jetty-6.1.19.jar" sourcepath="lib/jetty-6.1.19-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/JettyEmbedded/lib/jetty-6.1.19-javadoc.zip!/javadoc"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/jetty-util-6.1.19.jar"/>
+	<classpathentry kind="lib" path="lib/servlet-api-2.4.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.13.jar"/>
+	<classpathentry kind="lib" path="lib/freemarker.jar" sourcepath="lib/freemarker-2.3.16.zip">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/03-picture-gallery-with-templates/lib/freemarker-2.3.16.zip!/freemarker-2.3.16/docs/docs/api"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/hamcrest-core-1.3.jar" sourcepath="lib/hamcrest-core-1.3-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/scopa/lib/hamcrest-core-1.3-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/junit-4.11.jar" sourcepath="lib/junit-4.11-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/scopa/lib/junit-4.11-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="target"/>
+</classpath>
