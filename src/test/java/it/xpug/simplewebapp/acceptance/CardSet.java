@@ -1,0 +1,41 @@
+package it.xpug.simplewebapp.acceptance;
+
+import java.util.*;
+
+
+public class CardSet {
+
+	private Set<Card> cards = new HashSet<Card>();
+
+	public CardSet(Card ...cards) {
+		this.cards.addAll(Arrays.asList(cards));
+	}
+
+	public void add(Card card) {
+		cards.add(card);
+	}
+
+	public void remove(Card card) {
+		cards.remove(card);
+	}
+	
+	@Override
+	public String toString() {
+		return cards.toString();
+	}
+
+	@Override
+	public int hashCode() {
+		return cards.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof CardSet))
+			return false;
+		CardSet other = (CardSet) obj;
+		return cards.equals(other.cards);
+	}
+
+	
+}

@@ -15,9 +15,11 @@ When I play a card in my hand to the table, if it matches a card, then I conquer
 ### Scenario: non-matching card
 Given I have the three of clubs in my hand
   And there is a two of cups on the table
+  And my pile is empty
  When I play the three of clubs
  Then the three of clubs and the two of cups are on the table
   And I have nothing in my hand
+  And my pile is still empty
   
 ### Scenario: Capturing a matching card
 Given I have the five of clubs in my hand
@@ -25,7 +27,7 @@ Given I have the five of clubs in my hand
  When I play the five of clubs
  Then the table is empty
   And I have nothing in my hand
-  And I have the two cards in my deck
+  And I have the two cards in my pile
   
 ### Scenario: Capturing two cards by sum
 Given I have the five of clubs in my hand
@@ -33,7 +35,7 @@ Given I have the five of clubs in my hand
  When I play the five of clubs
  Then the table is empty
   And I have nothing in my hand
-  And I have the three cards in my deck
+  And I have the three cards in my pile
 
 ### Scenario: Two choices for capture
 Given I have the five of clubs in my hand
