@@ -19,13 +19,11 @@ public class CardSetTest {
 
 	@Test
 	public void returnsMatchingCards() throws Exception {
-		CardSet set = CardSet.with(ACE_OF_CUPS, TWO_OF_CUPS, TWO_OF_COINS);
+		CardSet set = setWith(ACE_OF_CUPS, TWO_OF_CUPS, TWO_OF_COINS);
 		
 		assertEquals(EMPTY, set.allMatching(THREE_OF_CUPS));
-		assertEquals(CardSet.with(ACE_OF_CUPS), 
-				set.allMatching(ACE_OF_SWORDS));		
-		assertEquals(CardSet.with(TWO_OF_CUPS, TWO_OF_COINS), 
-				set.allMatching(TWO_OF_SWORDS));
+		assertEquals(setWith(ACE_OF_CUPS), set.allMatching(ACE_OF_SWORDS));
+		assertEquals(setWith(TWO_OF_CUPS, TWO_OF_COINS), set.allMatching(TWO_OF_SWORDS));
 	}
 	
 	@Test
@@ -35,6 +33,10 @@ public class CardSetTest {
 		assertNotEquals(a, null);
 		assertNotEquals(a, "foo");
 		assertEquals(a, a);
+	}
+
+	private CardSet setWith(Card ...cards) {
+		return new CardSet(cards);
 	}
 
 }

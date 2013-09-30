@@ -49,14 +49,6 @@ public class CardSet {
 		return result;
 	}
 
-	public static CardSet with(Card ... cards) {
-		CardSet result = new CardSet();
-		for (Card card : cards) {
-			result.add(card);
-		}
-		return result;
-	}
-
 	public boolean isEmpty() {
 		return cards.isEmpty();
 	}
