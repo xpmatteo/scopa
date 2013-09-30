@@ -15,8 +15,10 @@ import static java.lang.String.*;
 public class XmlFragment {
 
 	private final Node node;
+	private String xml;
 
 	public XmlFragment(String xml) {
+		this.xml = xml;
 		Document w3cDocument = getW3CDocument(treatEntitiesAsText(xml));
 		this.node = getRootElement(w3cDocument);
 	}
@@ -46,7 +48,8 @@ public class XmlFragment {
 
 	@Override
 	public String toString() {
-		return node.toString();
+//		return node.toString();
+		return this.xml;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package it.xpug.scopa.view;
 
+import static it.xpug.scopa.infrastructure.XmlFragment.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import it.xpug.scopa.domain.*;
@@ -9,17 +10,25 @@ import org.hamcrest.*;
 import org.junit.*;
 
 public class ScopaViewTest {
+	ScopaView view = new ScopaView();
 
 	@Test@Ignore
 	public void showsCardsFaceupOnTable() throws Exception {
 		Card cardOnTheTable = new Card(1, Suit.CLUBS);
-		ScopaView view = new ScopaView();
 		assertThat(view.toHtml(), containsString(cardOnTheTable.toString()));
 	}
 	
 	@Test
 	public void hasProperHtmlStructure() throws Exception {
-		XmlFragment xml = new XmlFragment(new ScopaView().toHtml());
-		assertThat(xml, XmlFragment.matches("/html/head/title"));
+		XmlFragment xml = new XmlFragment(view.toHtml());
+		assertThat(xml, matches("/html/head/title"));
+		assertThat(xml, matches("/html/body"));
+	}
+	
+	@Test
+	public void showsTheTable() throws Exception {
+		XmlFragment xml = new XmlFragment(view.toHtml());
+		assertThat(xml, matches("//div[@id='table']"));
+		 
 	}
 }

@@ -12,6 +12,10 @@
     <div id="content">
       <h1>Welcome to Scopa!!!</h1>
       
+      <div id="table">
+        
+      </div>
+      
       <img src="/images/cards/coins-01.jpg" alt="Asso di Denari" width="100px"/>
       <img src="/images/cards/coins-02.jpg" alt="Due di Denari" width="100px"/>
       <img src="/images/cards/coins-03.jpg" alt="Tre di Denari" width="100px"/>
