@@ -12,14 +12,44 @@
     <div id="content">
       <h1>Welcome to Scopa!!!</h1>
       
-      <div id="table">
-        
+      <div id="table" class="cardSet">
+        <h2>Table</h2>
+        <ul>
+          <li>1 of cups</li>
+          <li>2 of cups</li>
+          <li>3 of cups</li>
+          <li>4 of cups</li>
+        </ul>
+      </div>
+
+      <div id="hand" class="cardSet">
+        <h2>Your hand</h2>
+        <ul>
+          <li>
+            <form method="post">
+              <input type="hidden" name="card" value="1S" />
+              <input type="button" value="1 of swords" />
+            </form>
+          </li>
+          <li>
+            <form method="post">
+              <input type="hidden" name="card" value="4S" />
+              <input type="button" value="4 of swords" />
+            </form>
+          </li>
+          <li>
+            <form method="post">
+              <input type="hidden" name="card" value="5C" />
+              <input type="button" value="5 of coins" />
+            </form>
+          </li>
+        </ul>
+      </div>
+
+      <div id="playerCaptures" class="cardPile">
+        You have captured 0 cards
       </div>
       
-      <img src="/images/cards/coins-01.jpg" alt="Asso di Denari" width="100px"/>
-      <img src="/images/cards/coins-02.jpg" alt="Due di Denari" width="100px"/>
-      <img src="/images/cards/coins-03.jpg" alt="Tre di Denari" width="100px"/>
-      <@card "coins-04.jpg" "Quattro di Denari" />
       <address style="font-size: xx-small">
         Cards By Poulpy <a href="http://creativecommons.org/licenses/by-sa/3.0">CC-BY-SA-3.0</a>, via Wikimedia Commons
       </address>

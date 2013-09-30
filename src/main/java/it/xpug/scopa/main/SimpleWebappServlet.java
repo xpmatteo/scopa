@@ -1,6 +1,6 @@
 package it.xpug.scopa.main;
 
-import it.xpug.scopa.freemarker.*;
+import it.xpug.scopa.view.*;
 
 import java.io.*;
 
@@ -14,7 +14,7 @@ public class SimpleWebappServlet extends HttpServlet {
 		
 		response.setContentType("text/html");
 		PrintWriter writer = response.getWriter();
-		TemplateView view = new TemplateView("index.ftl");
+		ScopaView view = new ScopaView();
 		writer.write(view.toHtml());
 		writer.close();
 	}
