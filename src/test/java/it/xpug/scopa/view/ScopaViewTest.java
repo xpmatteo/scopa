@@ -6,7 +6,6 @@ import static org.junit.Assert.*;
 import it.xpug.scopa.domain.*;
 import it.xpug.scopa.infrastructure.*;
 
-import org.hamcrest.*;
 import org.junit.*;
 
 public class ScopaViewTest {

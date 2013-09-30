@@ -11,6 +11,12 @@ public class CardSet {
 		this.cards.addAll(Arrays.asList(cards));
 	}
 
+	public CardSet(String[] cards) {
+		for (String card : cards) {
+			this.cards.add(Card.parse(card));
+		}
+	}
+
 	public void add(Card card) {
 		cards.add(card);
 	}
@@ -53,6 +59,15 @@ public class CardSet {
 
 	public Card first() {
 		return cards.iterator().next();
+	}
+
+	public String[] toParams() {
+		List<String> list = new ArrayList<String>();
+		for (Card card : cards) {
+			list.add(card.toParam());
+		}
+		Collections.sort(list);
+		return list.toArray(new String[0]);
 	}
 
 	

@@ -8,7 +8,18 @@ import org.junit.*;
 
 public class CardTest {
 
+	@Test
+	public void canBeCreatedFromParam() throws Exception {
+		Card expected = new Card(3, Suit.CLUBS);
+		Card actual = Card.parse("3-clubs");
+		assertEquals(expected.toString(), actual.toString());
+	}
 	
+	@Test
+	public void returnsItsParam() throws Exception {
+		Card card = new Card(3, Suit.CLUBS);
+		assertEquals("3-clubs", card.toParam());
+	}
 	
 	@Test
 	public void cardsWithSameRank_match() throws Exception {
@@ -28,6 +39,22 @@ public class CardTest {
 	public void hasSensibleToString() throws Exception {
 		Card sevenOfSwords = new Card(7, Suit.SWORDS);
 		assertEquals("7 of swords", sevenOfSwords.toString());
+	}
+	
+	@Test
+	public void supportsEquals() throws Exception {
+		Card a = new Card(3, Suit.SWORDS); 
+		Card b = new Card(3, Suit.SWORDS);
+		Card c = new Card(5, Suit.SWORDS); 
+		Card d = new Card(3, Suit.CUPS); 
+		
+		assertNotEquals(a, null);
+		assertNotEquals(a, "foo");
+		assertEquals(a, a);
+		assertEquals(a, b);
+		assertEquals(b, a);
+		assertNotEquals(a, c);
+		assertNotEquals(a, d);
 	}
 
 	private Matcher<Card> isMatching(final Card card) {

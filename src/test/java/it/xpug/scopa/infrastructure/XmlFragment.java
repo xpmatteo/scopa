@@ -1,5 +1,7 @@
 package it.xpug.scopa.infrastructure;
 
+import static java.lang.String.*;
+
 import java.io.*;
 import java.util.*;
 
@@ -9,8 +11,6 @@ import javax.xml.xpath.*;
 import org.hamcrest.*;
 import org.w3c.dom.*;
 import org.xml.sax.*;
-
-import static java.lang.String.*;
 
 public class XmlFragment {
 
