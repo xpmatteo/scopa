@@ -37,7 +37,7 @@ public class CardCaptureScenarioTest {
 		 thenMyPileContains(FIVE_OF_CLUBS, FIVE_OF_CUPS);
 		 thenTheTableContains();
 	}
-
+	
 	private void thenTheTableContains(Card ... cards) {
 		assertEquals("table", new CardSet(cards), table);
 	}

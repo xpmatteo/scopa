@@ -1,7 +1,5 @@
 package it.xpug.scopa.domain;
 
-import it.xpug.scopa.domain.*;
-
 import java.util.*;
 
 

@@ -1,4 +1,4 @@
-package it.xpug.scopa;
+package it.xpug.scopa.infrastructure;
 
 import static org.junit.Assert.*;
 

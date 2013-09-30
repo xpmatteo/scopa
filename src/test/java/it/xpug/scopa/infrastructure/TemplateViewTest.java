@@ -1,9 +1,9 @@
-package it.xpug.scopa;
+package it.xpug.scopa.infrastructure;
 
+import static org.junit.Assert.*;
 import it.xpug.scopa.freemarker.*;
 
 import org.junit.*;
-import static org.junit.Assert.*;
 
 public class TemplateViewTest {
 	

@@ -2,9 +2,6 @@ package it.xpug.scopa.domain;
 
 import static org.junit.Assert.*;
 
-import it.xpug.scopa.acceptance.*;
-import it.xpug.scopa.domain.*;
-
 import org.junit.*;
 
 public class CardSetTest {

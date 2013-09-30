@@ -6,9 +6,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import org.mortbay.jetty.*;
-import org.mortbay.jetty.handler.DefaultHandler;
-import org.mortbay.jetty.handler.HandlerList;
-import org.mortbay.jetty.handler.ResourceHandler;
+import org.mortbay.jetty.handler.*;
 import org.mortbay.jetty.servlet.*;
 
 public class ReusableJettyApp {

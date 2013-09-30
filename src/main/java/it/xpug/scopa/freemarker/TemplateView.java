@@ -2,6 +2,7 @@ package it.xpug.scopa.freemarker;
 
 import java.io.*;
 import java.util.*;
+
 import freemarker.template.*;
 
 public class TemplateView {
