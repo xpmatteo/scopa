@@ -11,7 +11,7 @@ import org.junit.*;
 public class CardSetTest {
 
 	@Test
-	public void equals() {
+	public void supportsEquals() {
 		CardSet a = new CardSet();
 		CardSet b = new CardSet();
 		

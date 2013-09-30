@@ -9,8 +9,10 @@ import org.junit.*;
 
 public class CardCaptureScenarioTest {
 
-	private static final Card THREE_OF_CLUBS = new Card("3 of clubs");
-	private static final Card TWO_OF_CLUBS = new Card("2 of clubs");
+	private static final Card THREE_OF_CLUBS = new Card(3, Suit.CLUBS);
+	private static final Card TWO_OF_CLUBS = new Card(2, Suit.CLUBS);
+	private static final Card FIVE_OF_CLUBS = new Card(5, Suit.CLUBS);
+	private static final Card FIVE_OF_CUPS = new Card(5, Suit.CUPS);
 
 	CardSet playerPile = new CardSet();
 	CardSet playerHand = new CardSet();
@@ -26,6 +28,16 @@ public class CardCaptureScenarioTest {
 		 thenTheTableContains(THREE_OF_CLUBS, TWO_OF_CLUBS);
 	}
 
+	@Test
+	public void capturingAMatchingCard() throws Exception {
+		 givenCardsInMyHand(FIVE_OF_CLUBS);
+		 givenCardsOnTheTable(FIVE_OF_CUPS);
+		 whenIPlay(FIVE_OF_CLUBS);
+		 thenMyHandContains();
+		 thenMyPileContains(FIVE_OF_CLUBS, FIVE_OF_CUPS);
+		 thenTheTableContains();
+	}
+
 	private void thenTheTableContains(Card ... cards) {
 		assertEquals("table", new CardSet(cards), table);
 	}
@@ -39,8 +51,15 @@ public class CardCaptureScenarioTest {
 	}
 
 	private void whenIPlay(Card card) {
-		table.add(card);
-		playerPile.remove(card);
+		if (card.equals(FIVE_OF_CLUBS)) {
+//			Card matchingCard = table.getCardMatching(card);
+			table.remove(FIVE_OF_CUPS);
+			playerPile.add(card);
+			playerPile.add(FIVE_OF_CUPS);
+		} else {
+			table.add(card);
+		}
+		playerHand.remove(card);
 	}
 
 	private void givenCardsOnTheTable(Card card) {
@@ -48,7 +67,7 @@ public class CardCaptureScenarioTest {
 	}
 
 	private void givenCardsInMyHand(Card card) {
-		playerPile.add(card);
+		playerHand.add(card);
 	}
 
 }
