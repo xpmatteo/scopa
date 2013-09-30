@@ -1,6 +1,6 @@
-package it.xpug.simplewebapp.main;
+package it.xpug.scopa.main;
 
-import it.xpug.simplewebapp.jetty.*;
+import it.xpug.scopa.jetty.*;
 
 
 public class Main {

@@ -1,6 +1,7 @@
-package it.xpug.simplewebapp.acceptance;
+package it.xpug.scopa.acceptance;
 
 import static org.junit.Assert.*;
+import it.xpug.scopa.domain.*;
 
 import org.junit.*;
 

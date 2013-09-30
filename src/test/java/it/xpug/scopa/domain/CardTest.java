@@ -1,7 +1,8 @@
-package it.xpug.simplewebapp.acceptance;
+package it.xpug.scopa.domain;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+import it.xpug.scopa.domain.*;
 
 import org.hamcrest.*;
 import org.junit.*;

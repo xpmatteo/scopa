@@ -1,6 +1,7 @@
-package it.xpug.simplewebapp.acceptance;
+package it.xpug.scopa.domain;
 
-import it.xpug.simplewebapp.acceptance.CardCaptureScenarioTest.*;
+import it.xpug.scopa.acceptance.CardCaptureScenarioTest.*;
+import it.xpug.scopa.domain.*;
 
 public class Game {
 

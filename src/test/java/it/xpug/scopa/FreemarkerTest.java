@@ -1,4 +1,4 @@
-package it.xpug.simplewebapp;
+package it.xpug.scopa;
 
 import static org.junit.Assert.*;
 

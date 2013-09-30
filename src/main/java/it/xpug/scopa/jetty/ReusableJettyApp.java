@@ -1,4 +1,4 @@
-package it.xpug.simplewebapp.jetty;
+package it.xpug.scopa.jetty;
 
 import java.io.*;
 

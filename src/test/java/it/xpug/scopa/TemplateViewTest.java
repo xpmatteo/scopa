@@ -1,6 +1,7 @@
-package it.xpug.simplewebapp;
+package it.xpug.scopa;
 
-import it.xpug.simplewebapp.freemarker.*;
+import it.xpug.scopa.freemarker.*;
+
 import org.junit.*;
 import static org.junit.Assert.*;
 

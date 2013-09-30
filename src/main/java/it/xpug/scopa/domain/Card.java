@@ -1,4 +1,6 @@
-package it.xpug.simplewebapp.acceptance;
+package it.xpug.scopa.domain;
+
+import it.xpug.scopa.acceptance.*;
 
 public class Card {
 	private String name;

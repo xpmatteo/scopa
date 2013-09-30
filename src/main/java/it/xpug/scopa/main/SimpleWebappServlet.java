@@ -1,6 +1,6 @@
-package it.xpug.simplewebapp.main;
+package it.xpug.scopa.main;
 
-import it.xpug.simplewebapp.freemarker.*;
+import it.xpug.scopa.freemarker.*;
 
 import java.io.*;
 

@@ -1,4 +1,4 @@
-package it.xpug.simplewebapp.freemarker;
+package it.xpug.scopa.freemarker;
 
 import java.io.*;
 import java.util.*;

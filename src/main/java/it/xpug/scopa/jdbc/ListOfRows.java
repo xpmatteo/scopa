@@ -1,4 +1,4 @@
-package it.xpug.simplewebapp.jdbc;
+package it.xpug.scopa.jdbc;
 
 import java.util.ArrayList;
 import java.util.HashMap;

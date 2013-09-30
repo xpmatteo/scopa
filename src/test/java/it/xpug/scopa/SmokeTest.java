@@ -1,4 +1,4 @@
-package it.xpug.simplewebapp;
+package it.xpug.scopa;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -6,8 +6,8 @@ import static org.junit.Assert.*;
 import java.io.*;
 import java.net.*;
 
-import it.xpug.simplewebapp.jetty.*;
-import it.xpug.simplewebapp.main.*;
+import it.xpug.scopa.jetty.*;
+import it.xpug.scopa.main.*;
 
 import org.junit.*;
 
