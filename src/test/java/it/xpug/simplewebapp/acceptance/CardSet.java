@@ -37,5 +37,31 @@ public class CardSet {
 		return cards.equals(other.cards);
 	}
 
+	public CardSet allMatching(Card card) {
+		CardSet result = new CardSet();
+		for (Card candidate : this.cards) {
+			if (candidate.matches(card)) {
+				result.add(candidate);
+			}
+		}
+		return result;
+	}
+
+	public static CardSet with(Card ... cards) {
+		CardSet result = new CardSet();
+		for (Card card : cards) {
+			result.add(card);
+		}
+		return result;
+	}
+
+	public boolean isEmpty() {
+		return cards.isEmpty();
+	}
+
+	public Card first() {
+		return cards.iterator().next();
+	}
+
 	
 }

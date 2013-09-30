@@ -1,9 +1,6 @@
 package it.xpug.simplewebapp.acceptance;
 
-import static java.util.Arrays.*;
 import static org.junit.Assert.*;
-
-import java.util.*;
 
 import org.junit.*;
 
@@ -17,6 +14,8 @@ public class CardCaptureScenarioTest {
 	CardSet playerPile = new CardSet();
 	CardSet playerHand = new CardSet();
 	CardSet table = new CardSet();
+	
+	Game game = new Game(playerHand, playerPile, table);
 	
 	@Test
 	public void playingANonMatchingCard() throws Exception {
@@ -51,15 +50,7 @@ public class CardCaptureScenarioTest {
 	}
 
 	private void whenIPlay(Card card) {
-		if (card.equals(FIVE_OF_CLUBS)) {
-//			Card matchingCard = table.getCardMatching(card);
-			table.remove(FIVE_OF_CUPS);
-			playerPile.add(card);
-			playerPile.add(FIVE_OF_CUPS);
-		} else {
-			table.add(card);
-		}
-		playerHand.remove(card);
+		game.play(card);
 	}
 
 	private void givenCardsOnTheTable(Card card) {
