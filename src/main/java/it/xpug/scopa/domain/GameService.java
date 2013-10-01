@@ -7,6 +7,19 @@ public class GameService {
 	private CardSet table = new CardSet();
 	private Game game = new Game(playerHand, playerCaptures, table);
 	
+	public GameService(CardSet table, CardSet playerHand) {
+		this.table = table;
+		this.playerHand = playerHand;
+		this.game = new Game(playerHand, playerCaptures, table);
+	}
+
+	public GameService() {
+		playerHand = new CardSet();
+		playerCaptures = new CardSet();
+		table = new CardSet();
+		game = new Game(playerHand, playerCaptures, table);
+	}
+
 	public void addToPlayerHand(String card) {
 		playerHand.add(Card.parse(card));
 	}

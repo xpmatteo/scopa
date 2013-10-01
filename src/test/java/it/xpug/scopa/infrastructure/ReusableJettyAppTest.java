@@ -8,20 +8,30 @@ import it.xpug.scopa.main.*;
 import java.io.*;
 import java.net.*;
 
+import javax.servlet.*;
+import javax.servlet.http.*;
+
 import org.junit.*;
 
-public class SmokeTest {
+public class ReusableJettyAppTest {
 
-	private static ReusableJettyApp app;
+	private static ReusableJettyApp app = new ReusableJettyApp(TestServlet.class);		
+	
+	public static class TestServlet extends HttpServlet {
+		@Override
+		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			response.getWriter().write("Hello!");
+		}
+	}
 
 	@Test
 	public void servletIsInvokedOnRoot() throws Exception {
-		assertThat(get("/"), startsWith("<!DOCTYPE html>"));
+		assertThat(get("/"), startsWith("Hello!"));
 	}
 	
 	@Test
 	public void servletIsInvokedOnAnyArbitraryPath() throws Exception {
-		assertThat(get("/pippo"), startsWith("<!DOCTYPE html>"));
+		assertThat(get("/pippo"), startsWith("Hello!"));
 	}
 
 	@Test
@@ -31,7 +41,6 @@ public class SmokeTest {
 
 	@BeforeClass
 	public static void setUp() throws Exception {
-		app = new ReusableJettyApp(SimpleWebappServlet.class);		
 		app.start(8123, "src/main/webapp");
 	}
 

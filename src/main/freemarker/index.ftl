@@ -15,34 +15,23 @@
       <div id="table" class="cardSet">
         <h2>Table</h2>
         <ul>
-          <li>1 of cups</li>
-          <li>2 of cups</li>
-          <li>3 of cups</li>
-          <li>4 of cups</li>
+          <#list table as card>
+          <li class='card'>${card}</li>          
+          </#list>
         </ul>
       </div>
 
-      <div id="hand" class="cardSet">
+      <div id="playerHand" class="cardSet">
         <h2>Your hand</h2>
         <ul>
+          <#list playerHand as card>
           <li>
             <form method="post">
-              <input type="hidden" name="card" value="1S" />
-              <input type="button" value="1 of swords" />
+              <input type="hidden" name="card" value="${card}" />
+              <input type="button" value="${card}" />
             </form>
           </li>
-          <li>
-            <form method="post">
-              <input type="hidden" name="card" value="4S" />
-              <input type="button" value="4 of swords" />
-            </form>
-          </li>
-          <li>
-            <form method="post">
-              <input type="hidden" name="card" value="5C" />
-              <input type="button" value="5 of coins" />
-            </form>
-          </li>
+          </#list>
         </ul>
       </div>
 
