@@ -6,17 +6,17 @@ import it.xpug.scopa.freemarker.*;
 
 public class ScopaView extends TemplateView {
 
-	private GameService gameService;
+	private GameService scopaService;
 
-	public ScopaView(GameService gameService) {
+	public ScopaView(GameService scopaService) {
 		super("index.ftl");
-		this.gameService = gameService;
+		this.scopaService = scopaService;
 	}
 	
 	@Override
 	public String toHtml() {
-		super.put("table", gameService.table());
-		super.put("playerHand", gameService.playerHand());
+		super.put("table", scopaService.table());
+		super.put("playerHand", scopaService.playerHand());
 		return super.toHtml();
 	}
 

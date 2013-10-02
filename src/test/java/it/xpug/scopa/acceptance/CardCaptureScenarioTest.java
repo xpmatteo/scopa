@@ -15,7 +15,7 @@ public class CardCaptureScenarioTest {
 	private static final String FIVE_OF_CLUBS = "5-clubs";
 	private static final String FIVE_OF_CUPS = "5-cups";
 
-	GameService gameService = new GameService();
+	ScopaService scopaService = new ScopaService();
 	
 	@Test
 	public void playingANonMatchingCard() throws Exception {
@@ -39,29 +39,29 @@ public class CardCaptureScenarioTest {
 	
 	private void thenTheTableContains(String ... cards) {
 		Arrays.sort(cards);
-		assertArrayEquals(cards, gameService.table());
+		assertArrayEquals(cards, scopaService.table());
 	}
 
 	private void thenMyPileContains(String  ... cards) {
 		Arrays.sort(cards);
-		assertArrayEquals(cards, gameService.playerCaptures());
+		assertArrayEquals(cards, scopaService.playerCaptures());
 	}
 
 	private void thenMyHandContains(Card ...cards) {
 		Arrays.sort(cards);
-		assertArrayEquals(cards, gameService.playerHand());
+		assertArrayEquals(cards, scopaService.playerHand());
 	}
 
 	private void whenIPlay(String aCard) {
-		gameService.play(aCard);
+		scopaService.play(aCard);
 	}
 
 	private void givenCardsOnTheTable(String card) {
-		gameService.addToTable(card);
+		scopaService.addToTable(card);
 	}
 
 	private void givenCardsInMyHand(String card) {
-		gameService.addToPlayerHand(card);
+		scopaService.addToPlayerHand(card);
 	}
 
 }

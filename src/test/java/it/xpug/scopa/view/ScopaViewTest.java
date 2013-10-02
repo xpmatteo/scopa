@@ -6,14 +6,13 @@ import static org.junit.Assert.*;
 import it.xpug.scopa.domain.*;
 import it.xpug.scopa.infrastructure.*;
 
-import org.hamcrest.*;
 import org.junit.*;
 
 public class ScopaViewTest {
 	private CardSet table = new CardSet();
 	private CardSet playerHand = new CardSet();
-	private GameService gameService = new GameService(table, playerHand);
-	private ScopaView view = new ScopaView(gameService);
+	private ScopaService scopaService = new ScopaService(table, playerHand);
+	private ScopaView view = new ScopaView(scopaService);
 
 	@Test
 	public void showsCardsFaceupOnTable() throws Exception {
@@ -33,7 +32,7 @@ public class ScopaViewTest {
 				"//form/input[@type='hidden' and @value='3-swords']");
 		// button
 		playerHand.getNode(
-				"//form/input[@type='button' and @value='3-swords']");
+				"//form/input[@type='submit' and @value='3-swords']");
 	}
 	
 	@Test

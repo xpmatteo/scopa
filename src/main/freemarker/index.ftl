@@ -28,7 +28,7 @@
           <li>
             <form method="post">
               <input type="hidden" name="card" value="${card}" />
-              <input type="button" value="${card}" />
+              <input type="submit" value="${card}" />
             </form>
           </li>
           </#list>
