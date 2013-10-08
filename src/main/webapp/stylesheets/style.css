@@ -16,3 +16,12 @@ body {
 .deleted {
   text-decoration: line-through;
 }
+
+.cardSet li {
+	list-style-type: none; /* remove bullets */
+	display: inline; /* make them horizontal */
+}
+
+.cardSet form {
+	display: inline;
+}
