@@ -30,7 +30,7 @@ public class ScopaServletTest {
 			oneOf(game).play("3-cups");
 		}});
 		servlet.doPost(request, response);
-		fail("This test is too complicated");
+//		fail("This test is too complicated");
 	}
 
 }

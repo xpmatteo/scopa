@@ -1,5 +1,7 @@
 package it.xpug.scopa.domain;
 
+import static java.lang.String.*;
+
 
 
 public class Card {
@@ -24,8 +26,8 @@ public class Card {
 
 	public static Card parse(String string) {
 		String[] split = string.split("-");
-		int rank = Integer.parseInt(split[0]);
-		Suit suit = Suit.valueOf(split[1].toUpperCase());
+		Suit suit = Suit.valueOf(split[0].toUpperCase());
+		int rank = Integer.parseInt(split[1]);
 		return new Card(rank, suit);
 	}
 	
@@ -42,6 +44,6 @@ public class Card {
 	}
 
 	public String toParam() {
-		return "" + rank + "-" + suit.toString().toLowerCase();
+		return format("%s-%02d", suit.toString().toLowerCase(), rank);
 	}
 }

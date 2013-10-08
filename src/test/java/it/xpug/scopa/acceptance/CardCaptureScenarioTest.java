@@ -10,10 +10,10 @@ import org.junit.*;
 
 public class CardCaptureScenarioTest {
 
-	private static final String THREE_OF_CLUBS = "3-clubs";
-	private static final String TWO_OF_CLUBS = "2-clubs";
-	private static final String FIVE_OF_CLUBS = "5-clubs";
-	private static final String FIVE_OF_CUPS = "5-cups";
+	private static final String THREE_OF_CLUBS = "clubs-03";
+	private static final String TWO_OF_CLUBS = "clubs-02";
+	private static final String FIVE_OF_CLUBS = "clubs-05";
+	private static final String FIVE_OF_CUPS = "cups-05";
 
 	ScopaService scopaService = new ScopaService();
 	

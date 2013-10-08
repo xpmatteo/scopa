@@ -11,8 +11,8 @@ import javax.servlet.http.*;
 public class ScopaServlet extends HttpServlet {	
 	
 	private static class TemporaryScopaRepository implements ScopaRepository {
-		static CardSet table = new CardSet(new Card[] { Card.parse("1-clubs"), Card.parse("2-clubs") });
-		static CardSet playerHand = new CardSet(new Card[] { Card.parse("1-swords"), Card.parse("3-cups") });
+		static CardSet table = new CardSet(new Card[] { Card.parse("coins-01"), Card.parse("coins-02") });
+		static CardSet playerHand = new CardSet(new Card[] { Card.parse("swords-01"), Card.parse("swords-03") });
 		static ScopaService scopaService = new ScopaService(table, playerHand);
 
 		@Override

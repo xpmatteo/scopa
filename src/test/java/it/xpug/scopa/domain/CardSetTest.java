@@ -33,7 +33,7 @@ public class CardSetTest {
 	
 	@Test
 	public void returnsArrayOfParams() throws Exception {
-		String[] expected = new String[] { "1-cups", "2-coins", "2-cups" };
+		String[] expected = new String[] { "coins-02", "cups-01", "cups-02" };
 		assertArrayEquals(expected , set.toParams());
 	}
 

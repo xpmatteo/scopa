@@ -1,5 +1,5 @@
-<#macro card source name>
-  <img src="/images/cards/${source}" alt="${name}" width="100px"/>
+<#macro cardImage source name>
+  <img src="/images/cards/${source}.jpg" alt="${name}" title="${name}" width="100px"/>
 </#macro>
 <!DOCTYPE html>
 <html>
@@ -16,7 +16,9 @@
         <h2>Table</h2>
         <ul>
           <#list table as card>
-          <li class='card'>${card}</li>          
+          <li class='card'>
+            <@cardImage source=card name=card />
+          </li>          
           </#list>
         </ul>
       </div>
@@ -28,7 +30,9 @@
           <li>
             <form method="post">
               <input type="hidden" name="card" value="${card}" />
-              <input type="submit" value="${card}" />
+              <button>
+                <@cardImage source=card name=card />
+              </button>
             </form>
           </li>
           </#list>

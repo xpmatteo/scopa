@@ -11,14 +11,14 @@ public class CardTest {
 	@Test
 	public void canBeCreatedFromParam() throws Exception {
 		Card expected = new Card(3, Suit.CLUBS);
-		Card actual = Card.parse("3-clubs");
+		Card actual = Card.parse("clubs-03");
 		assertEquals(expected.toString(), actual.toString());
 	}
 	
 	@Test
 	public void returnsItsParam() throws Exception {
 		Card card = new Card(3, Suit.CLUBS);
-		assertEquals("3-clubs", card.toParam());
+		assertEquals("clubs-03", card.toParam());
 	}
 	
 	@Test
