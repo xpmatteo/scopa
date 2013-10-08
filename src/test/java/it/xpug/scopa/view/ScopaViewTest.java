@@ -18,7 +18,7 @@ public class ScopaViewTest {
 	public void showsCardsFaceupOnTable() throws Exception {
 		Card card = new Card(1, Suit.CLUBS);
 		table.add(card);
-		assertNodeIs("//div[@id='table']//li[@class='card']", card.toParam());
+		assertNodeExists("//div[@id='table']//li[@class='card']//img[@src='/images/cards/clubs-01.jpg']");
 	}
 
 	@Test
@@ -29,10 +29,10 @@ public class ScopaViewTest {
 		XmlFragment playerHand = page.getNode("//div[@id='playerHand']");
 		// hidden field
 		playerHand.getNode(
-				"//form/input[@type='hidden' and @value='3-swords']");
+				"//form/input[@type='hidden' and @value='swords-03']");
 		// button
 		playerHand.getNode(
-				"//form/input[@type='submit' and @value='3-swords']");
+				"//form/button//img[@src='/images/cards/swords-03.jpg']");
 	}
 	
 	@Test
@@ -46,6 +46,11 @@ public class ScopaViewTest {
 	public void showsTheTable() throws Exception {
 		XmlFragment xml = new XmlFragment(view.toHtml());
 		assertThat(xml, matches("//div[@id='table']"));
+	}
+	
+	private void assertNodeExists(String xpath) {
+		XmlFragment xml = new XmlFragment(view.toHtml());
+		xml.getNode(xpath);
 	}
 
 	private void assertNodeIs(String xpath, String actual) {
