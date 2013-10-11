@@ -11,7 +11,7 @@ import javax.servlet.http.*;
 public class ScopaServlet extends HttpServlet {	
 	
 	private static class TemporaryScopaRepository implements ScopaRepository {
-		static GameService scopaService = new ScopaService() {{
+		GameService scopaService = new ScopaService() {{
 			startNewGame();
 		}};
 
