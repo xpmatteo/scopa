@@ -40,7 +40,7 @@
       </div>
 
       <div id="playerCaptures" class="cardPile">
-        You have captured 0 cards
+        You have captured ${countOfCapturedCards} cards
       </div>
       
       <address style="font-size: xx-small">

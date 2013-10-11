@@ -8,5 +8,9 @@ public interface GameService {
 
 	String[] playerHand();
 
+	public abstract int countOfCapturedCards();
+
+	public abstract void startNewGame();
+
 
 }

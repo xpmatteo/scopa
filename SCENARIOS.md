@@ -1,3 +1,22 @@
+Story: create new games
+-----------------------
+
+Scenario: when first visit the game
+When I visit the game for the first time
+Then I am offered to create a new game
+
+Scenario: when I create a new game
+When I choose to create a new game
+Then a new game is created
+ And I can start playing the new game
+ 
+Scenario: when a game is in progress
+Given I am playing a game
+When I choose to start a new game
+Then the current game is erased
+ and a new game starts
+
+
 
 Story: deal four cards
 ----------------------
@@ -6,7 +25,6 @@ When the game starts, the dealer deals four face-up cards in the center of the t
 Story: deal three cards to each player
 --------------------------------------
 When the game starts, the dealer deals three card face-down to both players (the player hands).
-
 
 Story: play a card
 ------------------

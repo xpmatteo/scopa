@@ -1,6 +1,5 @@
 package it.xpug.scopa.main;
 
-import static org.junit.Assert.*;
 import it.xpug.scopa.domain.*;
 
 import javax.servlet.http.*;

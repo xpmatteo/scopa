@@ -1,7 +1,6 @@
 package it.xpug.scopa.view;
 
 import static it.xpug.scopa.infrastructure.XmlFragment.*;
-import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import it.xpug.scopa.domain.*;
 import it.xpug.scopa.infrastructure.*;
@@ -11,7 +10,7 @@ import org.junit.*;
 public class ScopaViewTest {
 	private CardSet table = new CardSet();
 	private CardSet playerHand = new CardSet();
-	private ScopaService scopaService = new ScopaService(table, playerHand);
+	private GameService scopaService = new ScopaService(table, playerHand);
 	private ScopaView view = new ScopaView(scopaService);
 
 	@Test
@@ -51,10 +50,5 @@ public class ScopaViewTest {
 	private void assertNodeExists(String xpath) {
 		XmlFragment xml = new XmlFragment(view.toHtml());
 		xml.getNode(xpath);
-	}
-
-	private void assertNodeIs(String xpath, String actual) {
-		XmlFragment xml = new XmlFragment(view.toHtml());
-		assertThat(xml.getNode(xpath).getTextContent(), is(actual));
 	}
 }

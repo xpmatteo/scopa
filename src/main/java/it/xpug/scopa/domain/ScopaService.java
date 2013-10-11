@@ -1,11 +1,13 @@
 package it.xpug.scopa.domain;
 
+
 public class ScopaService implements GameService {
 
 	private CardSet playerHand = new CardSet();
 	private CardSet playerCaptures = new CardSet();
 	private CardSet table = new CardSet();
 	private Game game = new Game(playerHand, playerCaptures, table);
+	private Deck deck = new Deck();
 	
 	public ScopaService(CardSet table, CardSet playerHand) {
 		this.table = table;
@@ -14,9 +16,6 @@ public class ScopaService implements GameService {
 	}
 
 	public ScopaService() {
-		playerHand = new CardSet();
-		playerCaptures = new CardSet();
-		table = new CardSet();
 		game = new Game(playerHand, playerCaptures, table);
 	}
 
@@ -42,6 +41,26 @@ public class ScopaService implements GameService {
 
 	public String[] table() {
 		return table.toParams();
+	}
+
+	@Override
+	public int countOfCapturedCards() {
+		return playerCaptures.size();
+	}
+
+	@Override
+	public void startNewGame() {
+		this.playerHand.add(deck.dealOneCard());
+		this.playerHand.add(deck.dealOneCard());
+		this.playerHand.add(deck.dealOneCard());
+		this.table.add(deck.dealOneCard());
+		this.table.add(deck.dealOneCard());
+		this.table.add(deck.dealOneCard());
+		this.table.add(deck.dealOneCard());
+	}
+
+	public void setDeck(Deck deck) {
+		this.deck = deck;
 	}
 
 }

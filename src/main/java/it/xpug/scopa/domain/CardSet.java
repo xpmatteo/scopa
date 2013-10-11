@@ -70,5 +70,9 @@ public class CardSet {
 		return list.toArray(new String[0]);
 	}
 
+	public int size() {
+		return this.cards.size();
+	}
+
 	
 }

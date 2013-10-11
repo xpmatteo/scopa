@@ -1,4 +1,4 @@
-package it.xpug.scopa.acceptance;
+package it.xpug.scopa.scenari;
 
 import static org.junit.Assert.*;
 
@@ -37,6 +37,17 @@ public class CardCaptureScenarioTest {
 		 thenTheTableContains();
 	}
 	
+	@Test
+	public void theCountOfCapturedCardsIncreasesWhenWeCatpureACard() throws Exception {
+		theCountOfCapturedCardsIs(0);
+		capturingAMatchingCard();
+		theCountOfCapturedCardsIs(2);
+	}
+	
+	private void theCountOfCapturedCardsIs(int count) {
+		assertEquals("count of captured cards", count, scopaService.countOfCapturedCards());
+	}
+
 	private void thenTheTableContains(String ... cards) {
 		Arrays.sort(cards);
 		assertArrayEquals(cards, scopaService.table());
