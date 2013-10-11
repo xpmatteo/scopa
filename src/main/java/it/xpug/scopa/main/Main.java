@@ -1,6 +1,6 @@
 package it.xpug.scopa.main;
 
-import it.xpug.scopa.jetty.*;
+import it.xpug.scopa.adapters.jetty.*;
 
 
 public class Main {

@@ -1,30 +1,24 @@
 package it.xpug.scopa.domain;
 
 
-public class ScopaService implements GameService {
+public class ScopaService implements CardGameService {
 
-	private CardSet playerHand = new CardSet();
-	private CardSet playerCaptures = new CardSet();
-	private CardSet table = new CardSet();
-	private Game game = new Game(playerHand, playerCaptures, table);
+	private Game game;
 	private Deck deck = new Deck();
 	
-	public ScopaService(CardSet table, CardSet playerHand) {
-		this.table = table;
-		this.playerHand = playerHand;
-		this.game = new Game(playerHand, playerCaptures, table);
-	}
-
 	public ScopaService() {
+		CardSet playerHand = new CardSet();
+		CardSet playerCaptures = new CardSet();
+		CardSet table = new CardSet();
 		game = new Game(playerHand, playerCaptures, table);
 	}
 
 	public void addToPlayerHand(String card) {
-		playerHand.add(Card.parse(card));
+		game.addToPlayerHand(Card.parse(card));
 	}
 
 	public void addToTable(String card) {
-		table.add(Card.parse(card));
+		game.addToTable(Card.parse(card));
 	}
 
 	public void play(String card) {
@@ -32,31 +26,28 @@ public class ScopaService implements GameService {
 	}
 
 	public String[] playerHand() {
-		return playerHand.toParams();
+		return game.playerHand().toParams();
 	}
 
 	public String[] playerCaptures() {
-		return playerCaptures.toParams();
+		return game.playerCaptures().toParams();
 	}
 
 	public String[] table() {
-		return table.toParams();
+		return game.table().toParams();
 	}
 
 	@Override
 	public int countOfCapturedCards() {
-		return playerCaptures.size();
+		return game.playerCaptures().size();
 	}
 
 	@Override
 	public void startNewGame() {
-		this.playerHand.add(deck.dealOneCard());
-		this.playerHand.add(deck.dealOneCard());
-		this.playerHand.add(deck.dealOneCard());
-		this.table.add(deck.dealOneCard());
-		this.table.add(deck.dealOneCard());
-		this.table.add(deck.dealOneCard());
-		this.table.add(deck.dealOneCard());
+		for (int i=0; i < 3; i++) 
+			this.game.addToPlayerHand(deck.dealOneCard());
+		for (int i=0; i < 4; i++) 
+			this.game.addToTable(deck.dealOneCard());
 	}
 
 	public void setDeck(Deck deck) {

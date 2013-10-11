@@ -1,4 +1,4 @@
-package it.xpug.scopa.jdbc;
+package it.xpug.scopa.adapters.jdbc;
 
 import java.util.*;
 

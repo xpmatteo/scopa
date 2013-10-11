@@ -1,7 +1,7 @@
 package it.xpug.scopa.infrastructure;
 
 import static org.junit.Assert.*;
-import it.xpug.scopa.freemarker.*;
+import it.xpug.scopa.adapters.freemarker.*;
 
 import org.junit.*;
 

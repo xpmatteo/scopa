@@ -1,4 +1,4 @@
-package it.xpug.scopa.freemarker;
+package it.xpug.scopa.adapters.freemarker;
 
 import java.io.*;
 import java.util.*;

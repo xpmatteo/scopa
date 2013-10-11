@@ -15,7 +15,7 @@ public class ScopaServletTest {
 	HttpServletResponse response = context.mock(HttpServletResponse.class);
 	
 	ScopaRepository repository = context.mock(ScopaRepository.class);
-	GameService game = context.mock(GameService.class);
+	CardGameService game = context.mock(CardGameService.class);
 	ScopaServlet servlet = new ScopaServlet(repository);
 	
 	@Test

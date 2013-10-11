@@ -1,7 +1,8 @@
 package it.xpug.scopa.main;
 
+import it.xpug.scopa.adapters.html.*;
+import it.xpug.scopa.adapters.persistence.*;
 import it.xpug.scopa.domain.*;
-import it.xpug.scopa.view.*;
 
 import java.io.*;
 
@@ -10,17 +11,6 @@ import javax.servlet.http.*;
 
 public class ScopaServlet extends HttpServlet {	
 	
-	private static class TemporaryScopaRepository implements ScopaRepository {
-		GameService scopaService = new ScopaService() {{
-			startNewGame();
-		}};
-
-		@Override
-		public GameService find() {
-			return scopaService;
-		}
-	}
-
 	private ScopaRepository repository;
 
 	public ScopaServlet(ScopaRepository repository) {
@@ -28,7 +18,7 @@ public class ScopaServlet extends HttpServlet {
 	}
 	
 	public ScopaServlet() {
-		this.repository = new TemporaryScopaRepository();
+		this(new InMemoryScopaRepository());
 	}
 	
 
@@ -38,7 +28,7 @@ public class ScopaServlet extends HttpServlet {
 		
 		response.setContentType("text/html");
 		
-		GameService service = repository.find();		
+		CardGameService service = repository.find();		
 		ScopaView view = new ScopaView(service);
 		PrintWriter writer = response.getWriter();
 		writer.write(view.toHtml());
@@ -48,7 +38,7 @@ public class ScopaServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String card = req.getParameter("card");
-		GameService game = repository.find();
+		CardGameService game = repository.find();
 		game.play(card);
 		resp.sendRedirect("/");
 	}

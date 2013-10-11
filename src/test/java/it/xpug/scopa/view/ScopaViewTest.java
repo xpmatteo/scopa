@@ -2,28 +2,25 @@ package it.xpug.scopa.view;
 
 import static it.xpug.scopa.infrastructure.XmlFragment.*;
 import static org.junit.Assert.*;
+import it.xpug.scopa.adapters.html.*;
 import it.xpug.scopa.domain.*;
 import it.xpug.scopa.infrastructure.*;
 
 import org.junit.*;
 
 public class ScopaViewTest {
-	private CardSet table = new CardSet();
-	private CardSet playerHand = new CardSet();
-	private GameService scopaService = new ScopaService(table, playerHand);
+	private ScopaService scopaService = new ScopaService();
 	private ScopaView view = new ScopaView(scopaService);
 
 	@Test
 	public void showsCardsFaceupOnTable() throws Exception {
-		Card card = new Card(1, Suit.WANDS);
-		table.add(card);
+		scopaService.addToTable("wands-01");
 		assertNodeExists("//div[@id='table']//li[@class='card']//img[@src='/images/cards/wands-01.jpg']");
 	}
 
 	@Test
 	public void showsButtonsForYourHand() throws Exception {
-		Card card = new Card(3, Suit.SWORDS);
-		playerHand.add(card);
+		scopaService.addToPlayerHand("swords-03");
 		XmlFragment page = new XmlFragment(view.toHtml());
 		XmlFragment playerHand = page.getNode("//div[@id='playerHand']");
 		// hidden field

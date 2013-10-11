@@ -1,14 +1,14 @@
-package it.xpug.scopa.view;
+package it.xpug.scopa.adapters.html;
 
+import it.xpug.scopa.adapters.freemarker.*;
 import it.xpug.scopa.domain.*;
-import it.xpug.scopa.freemarker.*;
 
 
 public class ScopaView extends TemplateView {
 
-	private GameService scopaService;
+	private CardGameService scopaService;
 
-	public ScopaView(GameService scopaService) {
+	public ScopaView(CardGameService scopaService) {
 		super("index.ftl");
 		this.scopaService = scopaService;
 	}

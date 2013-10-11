@@ -2,7 +2,7 @@ package it.xpug.scopa.infrastructure;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-import it.xpug.scopa.jetty.*;
+import it.xpug.scopa.adapters.jetty.*;
 
 import java.io.*;
 import java.net.*;

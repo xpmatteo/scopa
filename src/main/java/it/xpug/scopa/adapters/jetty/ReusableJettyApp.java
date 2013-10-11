@@ -1,4 +1,4 @@
-package it.xpug.scopa.jetty;
+package it.xpug.scopa.adapters.jetty;
 
 import java.io.*;
 
