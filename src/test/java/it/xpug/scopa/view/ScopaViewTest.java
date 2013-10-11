@@ -15,9 +15,9 @@ public class ScopaViewTest {
 
 	@Test
 	public void showsCardsFaceupOnTable() throws Exception {
-		Card card = new Card(1, Suit.CLUBS);
+		Card card = new Card(1, Suit.WANDS);
 		table.add(card);
-		assertNodeExists("//div[@id='table']//li[@class='card']//img[@src='/images/cards/clubs-01.jpg']");
+		assertNodeExists("//div[@id='table']//li[@class='card']//img[@src='/images/cards/wands-01.jpg']");
 	}
 
 	@Test

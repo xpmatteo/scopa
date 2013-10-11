@@ -25,12 +25,12 @@ public class DeckTest extends CardSetTest {
 	@Test
 	public void cardsAreDealtRandomly() throws Exception {		
 		Deck oneDeck = new Deck(new Random(100));
-		assertThat(oneDeck.dealOneCard(), isCard("6 of clubs"));
+		assertThat(oneDeck.dealOneCard(), isCard("6 of wands"));
 		assertThat(oneDeck.dealOneCard(), isCard("8 of cups"));
 		
 		Deck anotherDeck = new Deck(new Random(875876354));
-		assertThat(anotherDeck.dealOneCard(), isCard("8 of clubs"));
-		assertThat(anotherDeck.dealOneCard(), isCard("7 of clubs"));
+		assertThat(anotherDeck.dealOneCard(), isCard("8 of wands"));
+		assertThat(anotherDeck.dealOneCard(), isCard("7 of wands"));
 	}
 	
 	private Matcher<? super Card> isCard(final String cardDescription) {

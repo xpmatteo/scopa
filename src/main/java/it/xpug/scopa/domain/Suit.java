@@ -1,5 +1,5 @@
 package it.xpug.scopa.domain;
 
 public enum Suit {
-	CUPS, SWORDS, COINS, CLUBS;
+	CUPS, SWORDS, COINS, WANDS;
 }

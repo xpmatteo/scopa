@@ -10,30 +10,30 @@ import org.junit.*;
 
 public class CardCaptureScenarioTest {
 
-	private static final String THREE_OF_CLUBS = "clubs-03";
-	private static final String TWO_OF_CLUBS = "clubs-02";
-	private static final String FIVE_OF_CLUBS = "clubs-05";
+	private static final String THREE_OF_WANDS = "wands-03";
+	private static final String TWO_OF_WANDS = "wands-02";
+	private static final String FIVE_OF_WANDS = "wands-05";
 	private static final String FIVE_OF_CUPS = "cups-05";
 
 	ScopaService scopaService = new ScopaService();
 	
 	@Test
 	public void playingANonMatchingCard() throws Exception {
-		 givenCardsInMyHand(THREE_OF_CLUBS);
-		 givenCardsOnTheTable(TWO_OF_CLUBS);
-		 whenIPlay(THREE_OF_CLUBS);
+		 givenCardsInMyHand(THREE_OF_WANDS);
+		 givenCardsOnTheTable(TWO_OF_WANDS);
+		 whenIPlay(THREE_OF_WANDS);
 		 thenMyHandContains();
 		 thenMyPileContains();
-		 thenTheTableContains(THREE_OF_CLUBS, TWO_OF_CLUBS);
+		 thenTheTableContains(THREE_OF_WANDS, TWO_OF_WANDS);
 	}
 
 	@Test
 	public void capturingAMatchingCard() throws Exception {
-		 givenCardsInMyHand(FIVE_OF_CLUBS);
+		 givenCardsInMyHand(FIVE_OF_WANDS);
 		 givenCardsOnTheTable(FIVE_OF_CUPS);
-		 whenIPlay(FIVE_OF_CLUBS);
+		 whenIPlay(FIVE_OF_WANDS);
 		 thenMyHandContains();
-		 thenMyPileContains(FIVE_OF_CLUBS, FIVE_OF_CUPS);
+		 thenMyPileContains(FIVE_OF_WANDS, FIVE_OF_CUPS);
 		 thenTheTableContains();
 	}
 	
