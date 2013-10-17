@@ -1,5 +1,6 @@
 package it.xpug.scopa.scenari;
 
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import java.util.*;
@@ -7,7 +8,6 @@ import java.util.*;
 
 import it.xpug.scopa.domain.*;
 
-import org.hamcrest.*;
 import org.junit.*;
 
 public class GameSetupScenarioTest {
@@ -30,12 +30,11 @@ public class GameSetupScenarioTest {
 		
 		scopaService.startNewGame();
 		
-		assertThat(scopaService.playerHand()[0], CoreMatchers.is("coins-04"));
-		assertThat(scopaService.table()[0], CoreMatchers.is("cups-02"));
+		assertThat(scopaService.playerHand()[0], is("coins-04"));
+		assertThat(scopaService.table()[0], is("cups-02"));
 
-	
 		scopaService.startNewGame();		
-		assertThat(scopaService.playerHand()[0], CoreMatchers.is("coins-04"));
-		assertThat(scopaService.table()[0], CoreMatchers.is("coins-07"));
+		assertThat(scopaService.playerHand()[0], is("coins-04"));
+		assertThat(scopaService.table()[0], is("coins-07"));
 	}
 }

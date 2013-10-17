@@ -43,6 +43,10 @@
         You have captured ${countOfCapturedCards} cards
       </div>
       
+      <form method="post">
+        <input type="submit" name="new-game-command" value="Start New Game" id="new-game-command"/>
+      </form>
+      
       <address style="font-size: xx-small">
         Cards By Poulpy <a href="http://creativecommons.org/licenses/by-sa/3.0">CC-BY-SA-3.0</a>, via Wikimedia Commons
       </address>
