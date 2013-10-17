@@ -31,5 +31,6 @@
 	<classpathentry kind="lib" path="lib/jmock/jmock-2.6.0.jar"/>
 	<classpathentry kind="lib" path="lib/jmock/jmock-junit4-2.6.0.jar"/>
 	<classpathentry kind="lib" path="lib/jmock/objenesis-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/selenium-server-standalone-2.35.0.jar"/>
 	<classpathentry kind="output" path="target"/>
 </classpath>

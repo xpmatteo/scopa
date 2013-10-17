@@ -37,7 +37,5 @@ public class GameSetupScenarioTest {
 		scopaService.startNewGame();		
 		assertThat(scopaService.playerHand()[0], CoreMatchers.is("coins-04"));
 		assertThat(scopaService.table()[0], CoreMatchers.is("coins-07"));
-}
-
-
+	}
 }
