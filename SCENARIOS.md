@@ -30,22 +30,6 @@ Story: play a card
 ------------------
 When I play a card in my hand to the table, if it matches a card, then I conquer both cards.  Otherwise it stays on the table.
 
-### Scenario: non-matching card
-Given I have the three of clubs in my hand
-  And there is a two of cups on the table
-  And my pile is empty
- When I play the three of clubs
- Then the three of clubs and the two of cups are on the table
-  And I have nothing in my hand
-  And my pile is still empty
-  
-### Scenario: Capturing a matching card
-Given I have the five of clubs in my hand
-  And there is a five of cups on the table
- When I play the five of clubs
- Then the table is empty
-  And I have nothing in my hand
-  And I have the two cards in my pile
   
 ### Scenario: Capturing two cards by sum
 Given I have the five of clubs in my hand
@@ -68,3 +52,21 @@ Given I have the five of clubs in my hand
  Then I have to capture the five of cups
 
 
+# DONE
+
+### Scenario: non-matching card
+Given I have the three of clubs in my hand
+  And there is a two of cups on the table
+  And my pile is empty
+ When I play the three of clubs
+ Then the three of clubs and the two of cups are on the table
+  And I have nothing in my hand
+  And my pile is still empty
+  
+### Scenario: Capturing a matching card
+Given I have the five of clubs in my hand
+  And there is a five of cups on the table
+ When I play the five of clubs
+ Then the table is empty
+  And I have nothing in my hand
+  And I have the two cards in my pile

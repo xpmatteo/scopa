@@ -17,6 +17,11 @@ public class NewGameScenarioTest extends GuiTest {
 		aNewGameIsCreated();
 	}
 
+	@After
+	public void closeTheBrowser() {
+		driver.close();
+	}
+	
 	private List<String> cardsFromTheOldGame;	
 	
 	private void givenAGameIsInProgress() {
@@ -30,7 +35,7 @@ public class NewGameScenarioTest extends GuiTest {
 
 	private void aNewGameIsCreated() {
 		List<String> cardsFromTheCurrentGame = names(cardsOnTheTable());
-		assertEquals(4, cardsFromTheCurrentGame.size());
+		assertEquals("cards on the table", 4, cardsFromTheCurrentGame.size());
 		assertNotEquals("cards on the table not changed", cardsFromTheOldGame, cardsFromTheCurrentGame);
 	}
 
