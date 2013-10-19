@@ -15,10 +15,7 @@ public class ScopaView extends TemplateView {
 	
 	@Override
 	public String toHtml() {
-		super.put("table", scopaService.table());
-		super.put("playerHand", scopaService.playerHand());
-		super.put("countOfCapturedCards", scopaService.countOfCapturedCards());
-		super.put("countOfCardsLeftInTheDeck", scopaService.countOfCardsLeftInTheDeck());
+		super.put("game", scopaService);
 		return super.toHtml();
 	}
 

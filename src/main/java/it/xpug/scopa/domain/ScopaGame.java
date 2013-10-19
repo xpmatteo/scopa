@@ -5,15 +5,34 @@ import static it.xpug.scopa.domain.Card.*;
 
 public class ScopaGame implements CardGame {
 
-	private Deck deck = new Deck();
+	private Deck deck;
 	private CardSet playerHand;
 	private CardSet playerCaptures;
 	private CardSet table;
 	
 	public ScopaGame() {
+		this(new Deck());
+	}
+
+	public ScopaGame(Deck deck) {
+		this.deck = deck;
 		clear();
 	}
 
+	@Override
+	public void startNewGame() {
+		clear();
+		dealToPlayer();
+		dealToTable();
+	}
+
+	public void play(String card) {
+		play(parse(card));
+		if (getPlayerHand().length == 0) {
+			dealToPlayer();
+		}
+	}
+	
 	public void addToPlayerHand(String card) {
 		playerHand.add(parse(card));
 	}
@@ -22,40 +41,26 @@ public class ScopaGame implements CardGame {
 		table.add(parse(card));
 	}
 
-	public void play(String card) {
-		play(parse(card));
-		if (playerHand().length == 0) {
-			dealToPlayer();
-		}
-	}
-	
-	public String[] playerHand() {
+	public String[] getPlayerHand() {
 		return playerHand.toParams();
 	}
 
-	public String[] playerCaptures() {
+	public String[] getPlayerCaptures() {
 		return playerCaptures.toParams();
 	}
 
-	public String[] table() {
+	public String[] getTable() {
 		return table.toParams();
 	}
 
 	@Override
-	public int countOfCapturedCards() {
+	public int getCountOfCapturedCards() {
 		return playerCaptures.size();
 	}
 
 	@Override
-	public int countOfCardsLeftInTheDeck() {
+	public int getCountOfCardsLeftInTheDeck() {
 		return deck.size();
-	}
-
-	@Override
-	public void startNewGame() {
-		clear();
-		dealToPlayer();
-		dealToTable();
 	}
 
 	private void dealToTable() {
@@ -66,10 +71,6 @@ public class ScopaGame implements CardGame {
 	private void dealToPlayer() {
 		for (int i=0; i < 3; i++) 
 			playerHand.add(deck.dealOneCard());
-	}
-
-	public void setDeck(Deck deck) {
-		this.deck = deck;
 	}
 
 	private void clear() {

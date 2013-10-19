@@ -4,8 +4,8 @@ public interface CardGame {
 	void startNewGame();
 	void play(String card);
 
-	String[] table();
-	String[] playerHand();
-	int countOfCapturedCards();
-	int countOfCardsLeftInTheDeck();
+	String[] getTable();
+	String[] getPlayerHand();
+	int getCountOfCapturedCards();
+	int getCountOfCardsLeftInTheDeck();
 }

@@ -13,17 +13,17 @@
       <h1>Welcome to Scopa!!!</h1>
       
       <p id="playerCaptures" class="cardPile">
-        You have captured ${countOfCapturedCards} cards
+        You have captured ${game.countOfCapturedCards} cards
       </p>
 
       <p id="deck">
-        The deck contains <span id="cards-left-in-the-deck">${countOfCardsLeftInTheDeck!0}</span> cards
+        The deck contains <span id="cards-left-in-the-deck">${game.countOfCardsLeftInTheDeck}</span> cards
       </p>
 
       <div id="table" class="cardSet">
         <h2>Table</h2>
         <ul>
-          <#list table as card>
+          <#list game.table as card>
           <li class='card'>
             <@cardImage source=card name=card />
           </li>          
@@ -34,7 +34,7 @@
       <div id="playerHand" class="cardSet">
         <h2>Your hand</h2>
         <ul>
-          <#list playerHand as card>
+          <#list game.playerHand as card>
           <li>
             <form method="post">
               <input type="hidden" name="card" value="${card}" />

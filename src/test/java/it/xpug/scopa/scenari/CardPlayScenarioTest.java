@@ -45,22 +45,22 @@ public class CardPlayScenarioTest {
 	}
 
 	private void theCountOfCapturedCardsIs(int count) {
-		assertEquals("count of captured cards", count, scopaGame.countOfCapturedCards());
+		assertEquals("count of captured cards", count, scopaGame.getCountOfCapturedCards());
 	}
 
 	private void thenTheTableContains(String ... cards) {
 		sort(cards);
-		assertArrayEquals(cards, scopaGame.table());
+		assertArrayEquals(cards, scopaGame.getTable());
 	}
 
 	private void thenMyPileContains(String  ... cards) {
 		sort(cards);
-		assertArrayEquals(cards, scopaGame.playerCaptures());
+		assertArrayEquals(cards, scopaGame.getPlayerCaptures());
 	}
 
 	private void thenMyHandContains(String ...cards) {
 		sort(cards);
-		assertArrayEquals(cards, scopaGame.playerHand());
+		assertArrayEquals(cards, scopaGame.getPlayerHand());
 	}
 
 	private void whenIPlay(String aCard) {

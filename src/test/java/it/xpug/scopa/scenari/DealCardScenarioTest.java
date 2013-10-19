@@ -19,18 +19,18 @@ public class DealCardScenarioTest {
 	
 	private void givenTheDeckIsNotEmpty() {
 		game.startNewGame();
-		assertThat(game.countOfCardsLeftInTheDeck(), greaterThan(0));
+		assertThat(game.getCountOfCardsLeftInTheDeck(), greaterThan(0));
 	}
 
 	private void thenIAmDealtThreeMoreCards() {
-		assertThat(game.playerHand().length, is(3));
-		assertThat(game.countOfCardsLeftInTheDeck(), is(30));
+		assertThat(game.getPlayerHand().length, is(3));
+		assertThat(game.getCountOfCardsLeftInTheDeck(), is(30));
 	}
 
 	private void whenIPlayMyLastCard() {
-		game.play(game.playerHand()[0]);
-		game.play(game.playerHand()[0]);
-		game.play(game.playerHand()[0]);
+		game.play(game.getPlayerHand()[0]);
+		game.play(game.getPlayerHand()[0]);
+		game.play(game.getPlayerHand()[0]);
 	}
 
 }
