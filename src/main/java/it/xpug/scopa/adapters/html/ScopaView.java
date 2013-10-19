@@ -6,9 +6,9 @@ import it.xpug.scopa.domain.*;
 
 public class ScopaView extends TemplateView {
 
-	private CardGameService scopaService;
+	private CardGame scopaService;
 
-	public ScopaView(CardGameService scopaService) {
+	public ScopaView(CardGame scopaService) {
 		super("index.ftl");
 		this.scopaService = scopaService;
 	}

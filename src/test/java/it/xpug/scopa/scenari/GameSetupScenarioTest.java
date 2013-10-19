@@ -14,27 +14,27 @@ public class GameSetupScenarioTest {
 
 	@Test
 	public void theProperNumberOfCardsAreDealt() {
-		ScopaService scopaService = new ScopaService();
+		ScopaGame scopaGame = new ScopaGame();
 		
-		scopaService.startNewGame();
+		scopaGame.startNewGame();
 		
-		assertEquals(3, scopaService.playerHand().length);
-		assertEquals(4, scopaService.table().length);
+		assertEquals(3, scopaGame.playerHand().length);
+		assertEquals(4, scopaGame.table().length);
 	}
 
 	@Test
 	public void cardsAreDealtRandomly() {
-		ScopaService scopaService = new ScopaService();
+		ScopaGame scopaGame = new ScopaGame();
 		Deck deck = new Deck(new Random(1234));
-		scopaService.setDeck(deck);
+		scopaGame.setDeck(deck);
 		
-		scopaService.startNewGame();
+		scopaGame.startNewGame();
 		
-		assertThat(scopaService.playerHand()[0], is("coins-04"));
-		assertThat(scopaService.table()[0], is("cups-02"));
+		assertThat(scopaGame.playerHand()[0], is("coins-04"));
+		assertThat(scopaGame.table()[0], is("cups-02"));
 
-		scopaService.startNewGame();		
-		assertThat(scopaService.playerHand()[0], is("coins-05"));
-		assertThat(scopaService.table()[0], is("cups-03"));
+		scopaGame.startNewGame();		
+		assertThat(scopaGame.playerHand()[0], is("coins-05"));
+		assertThat(scopaGame.table()[0], is("cups-03"));
 	}
 }

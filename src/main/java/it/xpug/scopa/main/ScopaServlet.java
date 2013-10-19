@@ -10,14 +10,14 @@ import javax.servlet.http.*;
 
 public class ScopaServlet extends HttpServlet {	
 	
-	private CardGameService service;
+	private CardGame service;
 
-	public ScopaServlet(CardGameService service) {
+	public ScopaServlet(CardGame service) {
 		this.service = service;
 	}
 	
 	public ScopaServlet() {
-		this(new ScopaService());
+		this(new ScopaGame());
 	}
 
 	@Override

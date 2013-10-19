@@ -1,6 +1,6 @@
 package it.xpug.scopa.domain;
 
-public interface CardGameService {
+public interface CardGame {
 	void startNewGame();
 	void play(String card);
 

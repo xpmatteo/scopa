@@ -6,9 +6,9 @@ public class ScopaServiceTest {
 
 	@Test
 	public void canRestartTheGameAsManyTimesAsWeWant() {
-		ScopaService scopaService = new ScopaService();
+		ScopaGame scopaGame = new ScopaGame();
 		for (int i = 0; i < 10; i++) {
-			scopaService.startNewGame();
+			scopaGame.startNewGame();
 		}
 	}
 

@@ -8,7 +8,7 @@ import org.junit.*;
 
 public class DealCardScenarioTest {
 
-	ScopaService game = new ScopaService();
+	ScopaGame game = new ScopaGame();
 	
 	@Test
 	public void deckNotEmpty() throws Exception {

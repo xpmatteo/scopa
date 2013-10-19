@@ -9,18 +9,18 @@ import it.xpug.scopa.infrastructure.*;
 import org.junit.*;
 
 public class ScopaViewTest {
-	private ScopaService scopaService = new ScopaService();
-	private ScopaView view = new ScopaView(scopaService);
+	private ScopaGame scopaGame = new ScopaGame();
+	private ScopaView view = new ScopaView(scopaGame);
 
 	@Test
 	public void showsCardsFaceupOnTable() throws Exception {
-		scopaService.addToTable("wands-01");
+		scopaGame.addToTable("wands-01");
 		assertNodeExists("//div[@id='table']//li[@class='card']//img[@src='/images/cards/wands-01.jpg']");
 	}
 
 	@Test
 	public void showsButtonsForYourHand() throws Exception {
-		scopaService.addToPlayerHand("swords-03");
+		scopaGame.addToPlayerHand("swords-03");
 		XmlFragment page = new XmlFragment(view.toHtml());
 		XmlFragment playerHand = page.getNode("//div[@id='playerHand']");
 		// hidden field

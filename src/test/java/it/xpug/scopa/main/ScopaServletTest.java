@@ -18,7 +18,7 @@ public class ScopaServletTest {
 	HttpServletRequest request = context.mock(HttpServletRequest.class);
 	HttpServletResponse response = context.mock(HttpServletResponse.class);
 	
-	CardGameService game = context.mock(CardGameService.class);
+	CardGame game = context.mock(CardGame.class);
 	ScopaServlet servlet = new ScopaServlet(game);
 	
 	Map<String, String> parameters = new HashMap<String, String>();
