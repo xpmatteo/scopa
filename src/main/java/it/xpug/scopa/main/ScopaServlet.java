@@ -11,16 +11,15 @@ import javax.servlet.http.*;
 
 public class ScopaServlet extends HttpServlet {	
 	
-	private ScopaRepository repository;
+	private CardGameService service;
 
-	public ScopaServlet(ScopaRepository repository) {
-		this.repository = repository;
+	public ScopaServlet(CardGameService service) {
+		this.service = service;
 	}
 	
 	public ScopaServlet() {
-		this(new InMemoryScopaRepository());
+		this(new ScopaService());
 	}
-	
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -28,7 +27,6 @@ public class ScopaServlet extends HttpServlet {
 		
 		response.setContentType("text/html");
 		
-		CardGameService service = repository.find();		
 		ScopaView view = new ScopaView(service);
 		PrintWriter writer = response.getWriter();
 		writer.write(view.toHtml());
@@ -37,9 +35,12 @@ public class ScopaServlet extends HttpServlet {
 	
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String card = req.getParameter("card");
-		CardGameService game = repository.find();
-		game.play(card);
+		if (req.getParameter("new-game-command") != null) {
+			service.startNewGame();
+		} else {
+			String card = req.getParameter("card");
+			service.play(card);
+		}
 		resp.sendRedirect("/");
 	}
 }

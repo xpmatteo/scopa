@@ -5,13 +5,13 @@ import it.xpug.scopa.main.*;
 
 import org.junit.*;
 import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.*;
+import org.openqa.selenium.htmlunit.*;
 
 public class GuiTest {
 
 	protected static final int APPLICATION_PORT = 8123;
 	protected static ReusableJettyApp app = new ReusableJettyApp(ScopaServlet.class);
-	protected WebDriver driver = new FirefoxDriver();
+	protected WebDriver driver = new HtmlUnitDriver();
 
 	@BeforeClass
 	public static void startApplication() throws Exception {

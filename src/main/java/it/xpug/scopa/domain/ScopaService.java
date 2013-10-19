@@ -7,10 +7,7 @@ public class ScopaService implements CardGameService {
 	private Deck deck = new Deck();
 	
 	public ScopaService() {
-		CardSet playerHand = new CardSet();
-		CardSet playerCaptures = new CardSet();
-		CardSet table = new CardSet();
-		game = new Game(playerHand, playerCaptures, table);
+		reinitialize();
 	}
 
 	public void addToPlayerHand(String card) {
@@ -44,6 +41,7 @@ public class ScopaService implements CardGameService {
 
 	@Override
 	public void startNewGame() {
+		reinitialize();
 		for (int i=0; i < 3; i++) 
 			this.game.addToPlayerHand(deck.dealOneCard());
 		for (int i=0; i < 4; i++) 
@@ -52,6 +50,13 @@ public class ScopaService implements CardGameService {
 
 	public void setDeck(Deck deck) {
 		this.deck = deck;
+	}
+
+	private void reinitialize() {
+		CardSet playerHand = new CardSet();
+		CardSet playerCaptures = new CardSet();
+		CardSet table = new CardSet();
+		game = new Game(playerHand, playerCaptures, table);
 	}
 
 }

@@ -34,7 +34,7 @@ public class GameSetupScenarioTest {
 		assertThat(scopaService.table()[0], is("cups-02"));
 
 		scopaService.startNewGame();		
-		assertThat(scopaService.playerHand()[0], is("coins-04"));
+		assertThat(scopaService.playerHand()[0], is("cups-03"));
 		assertThat(scopaService.table()[0], is("coins-07"));
 	}
 }
