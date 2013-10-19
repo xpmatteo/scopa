@@ -13,25 +13,26 @@ public class CardPlayScenarioTest {
 	private static final String TWO_OF_WANDS = "wands-02";
 	private static final String FIVE_OF_WANDS = "wands-05";
 	private static final String FIVE_OF_CUPS = "cups-05";
+	private static final String ANOTHER_CARD = "coins-10";
 
 	ScopaService scopaService = new ScopaService();
 	
 	@Test
 	public void playingANonMatchingCard() throws Exception {
-		 givenCardsInMyHand(THREE_OF_WANDS);
+		 givenCardsInMyHand(THREE_OF_WANDS, ANOTHER_CARD);
 		 givenCardsOnTheTable(TWO_OF_WANDS);
 		 whenIPlay(THREE_OF_WANDS);
-		 thenMyHandContains();
+		 thenMyHandContains(ANOTHER_CARD);
 		 thenMyPileContains();
 		 thenTheTableContains(THREE_OF_WANDS, TWO_OF_WANDS);
 	}
 
 	@Test
 	public void capturingAMatchingCard() throws Exception {
-		 givenCardsInMyHand(FIVE_OF_WANDS);
+		 givenCardsInMyHand(FIVE_OF_WANDS, ANOTHER_CARD);
 		 givenCardsOnTheTable(FIVE_OF_CUPS);
 		 whenIPlay(FIVE_OF_WANDS);
-		 thenMyHandContains();
+		 thenMyHandContains(ANOTHER_CARD);
 		 thenMyPileContains(FIVE_OF_WANDS, FIVE_OF_CUPS);
 		 thenTheTableContains();
 	}
@@ -57,7 +58,7 @@ public class CardPlayScenarioTest {
 		assertArrayEquals(cards, scopaService.playerCaptures());
 	}
 
-	private void thenMyHandContains(Card ...cards) {
+	private void thenMyHandContains(String ...cards) {
 		sort(cards);
 		assertArrayEquals(cards, scopaService.playerHand());
 	}
@@ -70,8 +71,10 @@ public class CardPlayScenarioTest {
 		scopaService.addToTable(card);
 	}
 
-	private void givenCardsInMyHand(String card) {
-		scopaService.addToPlayerHand(card);
+	private void givenCardsInMyHand(String ... cards) {
+		for (String card : cards) {
+			scopaService.addToPlayerHand(card);
+		}
 	}
 
 }

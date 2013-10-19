@@ -30,6 +30,18 @@ Story: play a card
 ------------------
 When I play a card in my hand to the table, if it matches a card, then I conquer both cards.  Otherwise it stays on the table.
 
+Story: deal
+-----------
+Given the deck is not empty
+When I play my last card
+Then I am dealt three more cards
+
+Story: game over
+----------------
+Given the deck is empty
+When I play my last card
+Then the game is over
+
   
 ### Scenario: Capturing two cards by sum
 Given I have the five of clubs in my hand

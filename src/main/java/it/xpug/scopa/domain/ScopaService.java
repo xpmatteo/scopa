@@ -20,6 +20,9 @@ public class ScopaService implements CardGameService {
 
 	public void play(String card) {
 		game.play(Card.parse(card));
+		if (playerHand().length == 0) {
+			dealToPlayer();
+		}
 	}
 
 	public String[] playerHand() {
@@ -41,16 +44,20 @@ public class ScopaService implements CardGameService {
 
 	@Override
 	public int countOfCardsLeftInTheDeck() {
-		return 33;
+		return deck.size();
 	}
 
 	@Override
 	public void startNewGame() {
 		reinitialize();
-		for (int i=0; i < 3; i++) 
-			this.game.addToPlayerHand(deck.dealOneCard());
+		dealToPlayer();
 		for (int i=0; i < 4; i++) 
 			this.game.addToTable(deck.dealOneCard());
+	}
+
+	private void dealToPlayer() {
+		for (int i=0; i < 3; i++) 
+			this.game.addToPlayerHand(deck.dealOneCard());
 	}
 
 	public void setDeck(Deck deck) {
