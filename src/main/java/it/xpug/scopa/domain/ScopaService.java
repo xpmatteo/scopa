@@ -40,6 +40,11 @@ public class ScopaService implements CardGameService {
 	}
 
 	@Override
+	public int countOfCardsLeftInTheDeck() {
+		return 33;
+	}
+
+	@Override
 	public void startNewGame() {
 		reinitialize();
 		for (int i=0; i < 3; i++) 
@@ -56,6 +61,7 @@ public class ScopaService implements CardGameService {
 		CardSet playerHand = new CardSet();
 		CardSet playerCaptures = new CardSet();
 		CardSet table = new CardSet();
+		deck.shuffle();
 		game = new Game(playerHand, playerCaptures, table);
 	}
 

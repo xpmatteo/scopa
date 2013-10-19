@@ -1,7 +1,6 @@
 package it.xpug.scopa.main;
 
 import it.xpug.scopa.adapters.html.*;
-import it.xpug.scopa.adapters.persistence.*;
 import it.xpug.scopa.domain.*;
 
 import java.io.*;

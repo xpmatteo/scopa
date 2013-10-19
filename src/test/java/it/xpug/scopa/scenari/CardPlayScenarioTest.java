@@ -1,14 +1,13 @@
 package it.xpug.scopa.scenari;
 
+import static java.util.Arrays.*;
 import static org.junit.Assert.*;
-
-import java.util.*;
 
 import it.xpug.scopa.domain.*;
 
 import org.junit.*;
 
-public class CardCaptureScenarioTest {
+public class CardPlayScenarioTest {
 
 	private static final String THREE_OF_WANDS = "wands-03";
 	private static final String TWO_OF_WANDS = "wands-02";
@@ -43,23 +42,23 @@ public class CardCaptureScenarioTest {
 		capturingAMatchingCard();
 		theCountOfCapturedCardsIs(2);
 	}
-	
+
 	private void theCountOfCapturedCardsIs(int count) {
 		assertEquals("count of captured cards", count, scopaService.countOfCapturedCards());
 	}
 
 	private void thenTheTableContains(String ... cards) {
-		Arrays.sort(cards);
+		sort(cards);
 		assertArrayEquals(cards, scopaService.table());
 	}
 
 	private void thenMyPileContains(String  ... cards) {
-		Arrays.sort(cards);
+		sort(cards);
 		assertArrayEquals(cards, scopaService.playerCaptures());
 	}
 
 	private void thenMyHandContains(Card ...cards) {
-		Arrays.sort(cards);
+		sort(cards);
 		assertArrayEquals(cards, scopaService.playerHand());
 	}
 

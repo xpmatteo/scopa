@@ -7,4 +7,5 @@ public interface CardGameService {
 	String[] table();
 	String[] playerHand();
 	int countOfCapturedCards();
+	int countOfCardsLeftInTheDeck();
 }

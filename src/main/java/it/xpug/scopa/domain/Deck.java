@@ -12,6 +12,11 @@ public class Deck {
 	
 	public Deck(Random random) {
 		this.random = random;
+		shuffle();
+	}
+
+	public void shuffle() {
+		cards.clear();
 		for (Suit suit : Suit.values()) {
 			for (int rank=1; rank <= 10; rank++) {
 				cards.add(new Card(rank, suit));
@@ -24,7 +29,10 @@ public class Deck {
 	}
 
 	public Card dealOneCard() {
+		if (cards.isEmpty())
+			throw new DeckIsEmptyException();
 		return cards.remove(random.nextInt(cards.size()));
 	}
 
+	public class DeckIsEmptyException extends RuntimeException {}
 }

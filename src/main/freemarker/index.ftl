@@ -12,6 +12,14 @@
     <div id="content">
       <h1>Welcome to Scopa!!!</h1>
       
+      <p id="playerCaptures" class="cardPile">
+        You have captured ${countOfCapturedCards} cards
+      </p>
+
+      <p id="deck">
+        The deck contains <span id="cards-left-in-the-deck">${countOfCardsLeftInTheDeck!0}</span> cards
+      </p>
+
       <div id="table" class="cardSet">
         <h2>Table</h2>
         <ul>
@@ -39,9 +47,6 @@
         </ul>
       </div>
 
-      <div id="playerCaptures" class="cardPile">
-        You have captured ${countOfCapturedCards} cards
-      </div>
       
       <form method="post">
         <input type="submit" name="new-game-command" value="Start New Game" id="new-game-command"/>

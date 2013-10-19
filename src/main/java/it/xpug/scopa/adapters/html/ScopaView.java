@@ -18,6 +18,7 @@ public class ScopaView extends TemplateView {
 		super.put("table", scopaService.table());
 		super.put("playerHand", scopaService.playerHand());
 		super.put("countOfCapturedCards", scopaService.countOfCapturedCards());
+		super.put("countOfCardsLeftInTheDeck", scopaService.countOfCardsLeftInTheDeck());
 		return super.toHtml();
 	}
 

@@ -37,6 +37,12 @@ public class NewGameScenarioTest extends GuiTest {
 		List<String> cardsFromTheCurrentGame = names(cardsOnTheTable());
 		assertEquals("cards on the table", 4, cardsFromTheCurrentGame.size());
 		assertNotEquals("cards on the table not changed", cardsFromTheOldGame, cardsFromTheCurrentGame);
+		assertEquals("cards on the table", 33, cardsLeftInTheDeck());
+	}
+
+	private int cardsLeftInTheDeck() {
+		WebElement element = driver.findElement(By.id("cards-left-in-the-deck"));
+		return Integer.valueOf(element.getText());
 	}
 
 	private List<String> names(List<WebElement> cards) {
