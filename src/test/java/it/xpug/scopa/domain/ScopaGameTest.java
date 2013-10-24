@@ -24,7 +24,7 @@ public class ScopaGameTest {
 		assertEquals(4, scopaGame.getTable().length);
 	}
 
-	@Test@Ignore
+	@Test
 	public void afterHumanPlays_computerResponds() throws Exception {
 		ScopaGame scopaGame = new ScopaGame();
 		scopaGame.startNewGame();

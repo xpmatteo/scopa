@@ -28,16 +28,12 @@ public class ScopaGame implements CardGame {
 
 	public void play(String card) {
 		play(parse(card));
-//		letOpponentPlay();
+		letOpponentPlay();
 		if (getPlayerHand().length == 0) {
 			dealToPlayers();
 		}
 	}
 	
-	public void letOpponentPlay() {
-		play(computerPlayer.playACard(), computerPlayer);
-	}
-
 	public void addToPlayerHand(String card) {
 		humanPlayer.isDealt(parse(card));
 	}
@@ -106,5 +102,9 @@ public class ScopaGame implements CardGame {
 		player.remove(playedCard);
 		table.play(playedCard);
 		player.capture(table.capturedCards());
+	}
+
+	private void letOpponentPlay() {
+		play(computerPlayer.playACard(), computerPlayer);
 	}
 }
