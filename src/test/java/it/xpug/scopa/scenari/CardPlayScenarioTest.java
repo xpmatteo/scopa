@@ -2,12 +2,12 @@ package it.xpug.scopa.scenari;
 
 import static java.util.Arrays.*;
 import static org.junit.Assert.*;
-
 import it.xpug.scopa.domain.*;
+import it.xpug.scopa.scenari.util.*;
 
 import org.junit.*;
 
-public class CardPlayScenarioTest {
+public class CardPlayScenarioTest extends CardGameDslTest {
 
 	private static final String THREE_OF_WANDS = "wands-03";
 	private static final String TWO_OF_WANDS = "wands-02";
@@ -15,15 +15,13 @@ public class CardPlayScenarioTest {
 	private static final String FIVE_OF_CUPS = "cups-05";
 	private static final String ANOTHER_CARD = "coins-10";
 
-	ScopaGame scopaGame = new ScopaGame();
-	
 	@Test
 	public void playingANonMatchingCard() throws Exception {
 		 givenCardsInMyHand(THREE_OF_WANDS, ANOTHER_CARD);
 		 givenCardsOnTheTable(TWO_OF_WANDS);
 		 whenIPlay(THREE_OF_WANDS);
 		 thenMyHandContains(ANOTHER_CARD);
-		 thenMyPileContains();
+		 thenMyCapturedCardsAre();
 		 thenTheTableContains(THREE_OF_WANDS, TWO_OF_WANDS);
 	}
 
@@ -33,7 +31,7 @@ public class CardPlayScenarioTest {
 		 givenCardsOnTheTable(FIVE_OF_CUPS);
 		 whenIPlay(FIVE_OF_WANDS);
 		 thenMyHandContains(ANOTHER_CARD);
-		 thenMyPileContains(FIVE_OF_WANDS, FIVE_OF_CUPS);
+		 thenMyCapturedCardsAre(FIVE_OF_WANDS, FIVE_OF_CUPS);
 		 thenTheTableContains();
 	}
 	
@@ -42,39 +40,6 @@ public class CardPlayScenarioTest {
 		theCountOfCapturedCardsIs(0);
 		capturingAMatchingCard();
 		theCountOfCapturedCardsIs(2);
-	}
-
-	private void theCountOfCapturedCardsIs(int count) {
-		assertEquals("count of captured cards", count, scopaGame.getCountOfCapturedCards());
-	}
-
-	private void thenTheTableContains(String ... cards) {
-		sort(cards);
-		assertArrayEquals(cards, scopaGame.getTable());
-	}
-
-	private void thenMyPileContains(String  ... cards) {
-		sort(cards);
-		assertArrayEquals(cards, scopaGame.getPlayerCaptures());
-	}
-
-	private void thenMyHandContains(String ...cards) {
-		sort(cards);
-		assertArrayEquals(cards, scopaGame.getPlayerHand());
-	}
-
-	private void whenIPlay(String aCard) {
-		scopaGame.play(aCard);
-	}
-
-	private void givenCardsOnTheTable(String card) {
-		scopaGame.addToTable(card);
-	}
-
-	private void givenCardsInMyHand(String ... cards) {
-		for (String card : cards) {
-			scopaGame.addToPlayerHand(card);
-		}
 	}
 
 }

@@ -5,7 +5,7 @@ import java.util.*;
 
 public class CardSet {
 
-	private Set<Card> cards = new HashSet<Card>();
+	private List<Card> cards = new ArrayList<Card>();
 
 	public CardSet(Card ...cards) {
 		this.cards.addAll(Arrays.asList(cards));
@@ -19,6 +19,11 @@ public class CardSet {
 
 	public void add(Card card) {
 		cards.add(card);
+	}
+
+	public void addMany(int count, Deck deck) {
+		for (int i=0; i < count; i++)
+			this.add(deck.dealOneCard());
 	}
 
 	public void remove(Card card) {

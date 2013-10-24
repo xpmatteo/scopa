@@ -9,6 +9,8 @@ public class ScopaGame implements CardGame {
 	private CardSet playerHand;
 	private CardSet playerCaptures;
 	private CardSet table;
+	private CardSet opponentHand;
+	private CardSet opponentCaptures;
 	
 	public ScopaGame() {
 		this(new Deck());
@@ -33,8 +35,19 @@ public class ScopaGame implements CardGame {
 		}
 	}
 	
+	public void letOpponentPlay() {
+		Card cardThatOpponentChoosesToPlay = opponentHand.first();
+		play(cardThatOpponentChoosesToPlay, opponentHand, opponentCaptures);
+	}
+
 	public void addToPlayerHand(String card) {
 		playerHand.add(parse(card));
+	}
+
+	public void addToOpponentHand(String ... cards) {
+		for (String card : cards) {
+			opponentHand.add(Card.parse(card));
+		}
 	}
 
 	public void addToTable(String card) {
@@ -47,6 +60,14 @@ public class ScopaGame implements CardGame {
 
 	public String[] getPlayerCaptures() {
 		return playerCaptures.toParams();
+	}
+
+	public String[] getOpponentCaptures() {
+		return opponentCaptures.toParams();
+	}
+
+	public String[] getOpponentHand() {
+		return opponentHand.toParams();
 	}
 
 	public String[] getTable() {
@@ -64,32 +85,36 @@ public class ScopaGame implements CardGame {
 	}
 
 	private void dealToTable() {
-		for (int i=0; i < 4; i++)
-			table.add(deck.dealOneCard());
+		table.addMany(4, deck);
 	}
 
 	private void dealToPlayer() {
-		for (int i=0; i < 3; i++) 
-			playerHand.add(deck.dealOneCard());
+		playerHand.addMany(3, deck);
 	}
 
 	private void clear() {
 		playerHand = new CardSet();
+		opponentHand = new CardSet();
 		playerCaptures = new CardSet();
+		opponentCaptures = new CardSet();
 		table = new CardSet();
 		deck.shuffle();
 	}
 
 	private void play(Card playedCard) {
-		playerHand.remove(playedCard);
+		play(playedCard, playerHand, playerCaptures);
+	}
+
+	private void play(Card playedCard, CardSet hand, CardSet captures) {
+		hand.remove(playedCard);
 		CardSet allMatching = table.allMatching(playedCard);
 		if (allMatching.isEmpty()) {
 			table.add(playedCard);
 		} else {
 			Card matchingCard = allMatching.first();
 			table.remove(matchingCard);
-			playerCaptures.add(playedCard);
-			playerCaptures.add(matchingCard);
+			captures.add(playedCard);
+			captures.add(matchingCard);
 		}
 	}
 
