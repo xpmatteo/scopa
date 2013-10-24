@@ -1,5 +1,7 @@
 package it.xpug.scopa.domain;
 
+import java.util.*;
+
 public class Player {
 	private CardSet hand;
 	private CardSet captures;
@@ -22,8 +24,16 @@ public class Player {
 	public String[] showCaptures() {
 		return captures.toParams();
 	}
+
 	public void capture(Card ... cards) {
 		captures.add(cards);
+	}
+	
+	public void capture(CardSet cards) {
+		captures.add(cards);
+	}
+	public void capture(List<Card> capturedCards) {
+		captures.add(capturedCards);
 	}
 	public Card playACard() {
 		return hand.first();

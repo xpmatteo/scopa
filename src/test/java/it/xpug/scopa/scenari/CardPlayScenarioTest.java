@@ -1,45 +1,54 @@
 package it.xpug.scopa.scenari;
 
-import static java.util.Arrays.*;
 import static org.junit.Assert.*;
 import it.xpug.scopa.domain.*;
-import it.xpug.scopa.scenari.util.*;
 
 import org.junit.*;
 
-public class CardPlayScenarioTest extends CardGameDslTest {
+public class CardPlayScenarioTest {
 
-	private static final String THREE_OF_WANDS = "wands-03";
-	private static final String TWO_OF_WANDS = "wands-02";
-	private static final String FIVE_OF_WANDS = "wands-05";
-	private static final String FIVE_OF_CUPS = "cups-05";
-	private static final String ANOTHER_CARD = "coins-10";
-
+	private static final Card THREE_OF_WANDS = Card.parse("wands-03");
+	private static final Card TWO_OF_WANDS = Card.parse("wands-02");
+	private static final Card FIVE_OF_WANDS = Card.parse("wands-05");
+	private static final Card FIVE_OF_CUPS = Card.parse("cups-05");
+	
+	
 	@Test
 	public void playingANonMatchingCard() throws Exception {
-		 givenCardsInMyHand(THREE_OF_WANDS, ANOTHER_CARD);
 		 givenCardsOnTheTable(TWO_OF_WANDS);
 		 whenIPlay(THREE_OF_WANDS);
-		 thenMyHandContains(ANOTHER_CARD);
+		 thenTheTableContains(TWO_OF_WANDS, THREE_OF_WANDS);
 		 thenMyCapturedCardsAre();
-		 thenTheTableContains(THREE_OF_WANDS, TWO_OF_WANDS);
 	}
 
 	@Test
 	public void capturingAMatchingCard() throws Exception {
-		 givenCardsInMyHand(FIVE_OF_WANDS, ANOTHER_CARD);
 		 givenCardsOnTheTable(FIVE_OF_CUPS);
 		 whenIPlay(FIVE_OF_WANDS);
-		 thenMyHandContains(ANOTHER_CARD);
 		 thenMyCapturedCardsAre(FIVE_OF_WANDS, FIVE_OF_CUPS);
 		 thenTheTableContains();
 	}
 	
-	@Test
-	public void theCountOfCapturedCardsIncreasesWhenWeCatpureACard() throws Exception {
-		theCountOfCapturedCardsIs(0);
-		capturingAMatchingCard();
-		theCountOfCapturedCardsIs(2);
+
+	protected ScopaTable table = new ScopaTable();
+
+	protected void theCountOfCapturedCardsIs(int count) {
+		assertEquals("count of captured cards", count, table.capturedCards().size());
 	}
 
+	protected void thenTheTableContains(Card ... expected) {
+		assertEquals("table", new CardSet(expected), table.cards());
+	}
+
+	protected void thenMyCapturedCardsAre(Card ... cards) {
+		assertEquals("my captured cards", new CardSet(cards), table.capturedCards());
+	}
+
+	protected void whenIPlay(Card aCard) {
+		table.play(aCard);
+	}
+
+	protected void givenCardsOnTheTable(Card card) {
+		table.add(card);
+	}
 }

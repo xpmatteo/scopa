@@ -24,7 +24,7 @@ public class DealCardScenarioTest {
 
 	private void thenIAmDealtThreeMoreCards() {
 		assertThat(game.getPlayerHand().length, is(3));
-		assertThat(game.getCountOfCardsLeftInTheDeck(), is(30));
+		assertThat(game.getCountOfCardsLeftInTheDeck(), is(24));
 	}
 
 	private void whenIPlayMyLastCard() {

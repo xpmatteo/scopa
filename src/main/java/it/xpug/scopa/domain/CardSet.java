@@ -7,9 +7,9 @@ import java.util.*;
 
 public class CardSet {
 
-	private List<Card> cards = new ArrayList<Card>();
+	protected List<Card> cards = new ArrayList<Card>();
 
-	public CardSet(Card ...cards) {
+	public CardSet(Card ... cards) {
 		this.cards.addAll(asList(cards));
 	}
 
@@ -19,8 +19,20 @@ public class CardSet {
 		}
 	}
 
+	public CardSet(List<Card> cards) {
+		this(cards.toArray(new Card[0]));
+	}
+
 	public void add(Card ... cards) {
 		this.cards.addAll(asList(cards));
+	}
+
+	public void add(List<Card> cards) {
+		this.cards.addAll(cards);
+	}
+	
+	public void add(CardSet others) {
+		this.cards.addAll(others.cards);
 	}
 
 	public void add(int count, Deck deck) {
@@ -50,16 +62,6 @@ public class CardSet {
 		return cards.equals(other.cards);
 	}
 
-	public CardSet allMatching(Card card) {
-		CardSet result = new CardSet();
-		for (Card candidate : this.cards) {
-			if (candidate.matches(card)) {
-				result.add(candidate);
-			}
-		}
-		return result;
-	}
-
 	public boolean isEmpty() {
 		return cards.isEmpty();
 	}
@@ -79,6 +81,10 @@ public class CardSet {
 
 	public int size() {
 		return this.cards.size();
+	}
+
+	public void clear() {
+		cards.clear();
 	}
 
 	

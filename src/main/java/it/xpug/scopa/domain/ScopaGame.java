@@ -8,7 +8,7 @@ public class ScopaGame implements CardGame {
 	private Deck deck;
 	private Player humanPlayer = new Player();
 	private Player computerPlayer = new Player();
-	private CardSet table;
+	private ScopaTable table = new ScopaTable();
 	
 	public ScopaGame() {
 		this(new Deck());
@@ -22,14 +22,15 @@ public class ScopaGame implements CardGame {
 	@Override
 	public void startNewGame() {
 		clear();
-		dealToPlayer();
+		dealToPlayers();
 		dealToTable();
 	}
 
 	public void play(String card) {
 		play(parse(card));
+//		letOpponentPlay();
 		if (getPlayerHand().length == 0) {
-			dealToPlayer();
+			dealToPlayers();
 		}
 	}
 	
@@ -85,14 +86,15 @@ public class ScopaGame implements CardGame {
 		table.add(4, deck);
 	}
 
-	private void dealToPlayer() {
+	private void dealToPlayers() {
 		humanPlayer.isDealt(3, deck);
+		computerPlayer.isDealt(3, deck);
 	}
 
 	private void clear() {
 		humanPlayer.reset();		
 		computerPlayer.reset();
-		table = new CardSet();
+		table.clear();
 		deck.shuffle();
 	}
 
@@ -102,13 +104,7 @@ public class ScopaGame implements CardGame {
 
 	private void play(Card playedCard, Player player) {
 		player.remove(playedCard);
-		CardSet allMatching = table.allMatching(playedCard);
-		if (allMatching.isEmpty()) {
-			table.add(playedCard);
-		} else {
-			Card matchingCard = allMatching.first();
-			table.remove(matchingCard);
-			player.capture(playedCard, matchingCard);
-		}
+		table.play(playedCard);
+		player.capture(table.capturedCards());
 	}
 }

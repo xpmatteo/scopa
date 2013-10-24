@@ -30,10 +30,10 @@ public class GameSetupScenarioTest {
 		scopaGame.startNewGame();
 		
 		assertThat(scopaGame.getPlayerHand()[0], is("coins-04"));
-		assertThat(scopaGame.getTable()[0], is("cups-02"));
+		assertThat(scopaGame.getTable()[0], is("cups-03"));
 
 		scopaGame.startNewGame();		
-		assertThat(scopaGame.getPlayerHand()[0], is("coins-05"));
-		assertThat(scopaGame.getTable()[0], is("cups-03"));
+		assertThat(scopaGame.getPlayerHand()[0], is("cups-01"));
+		assertThat(scopaGame.getTable()[0], is("coins-02"));
 	}
 }
