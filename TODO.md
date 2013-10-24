@@ -1,13 +1,19 @@
 
-- The computer plays against me (randomly) (opponent is dealer)
-- When the game is over, a winner is declared
-- String more games in a contest
-
-- Player is dealer
+- Proper sequence of game
+  - Deal cards
+  - Human plays, Computer opponent plays (x3)
+  - Deal cards
+  - ...
+  - Game over, winner is declared
+  
+- Proper sequence of games in a contest
+  - Play more games, keep score
+  - Winner is first player to score 21
+  
+- When opponent plays, an event describing the move is available to the GUI
 
 - Scoring rules: carte, primiera, settebello
 
 - More games can be played in different browsers at the same time
-
 
 - The computer plays a greedy strategy
