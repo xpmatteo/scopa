@@ -7,36 +7,8 @@ public class ScopaGame implements CardGame {
 
 	private Deck deck;
 	private Player humanPlayer = new Player();
+	private Player computerPlayer = new Player();
 	private CardSet table;
-	private CardSet opponentHand;
-	private CardSet opponentCaptures;
-	
-	public static class Player {
-		private CardSet hand;
-		private CardSet captures;
-		public void isDealt(Card card) {
-			hand.add(card);
-		}
-		public void isDealt(int count, Deck deck) {
-			hand.add(count, deck);
-		}
-		public String[] showHand() {
-			return hand.toParams();
-		}
-		public void reset() {
-			hand = new CardSet();
-			captures = new CardSet();
-		}
-		public void remove(Card playedCard) {
-			hand.remove(playedCard);
-		}
-		public String[] showCaptures() {
-			return captures.toParams();
-		}
-		public void capture(Card ... cards) {
-			captures.add(cards);
-		}
-	}
 	
 	public ScopaGame() {
 		this(new Deck());
@@ -62,8 +34,7 @@ public class ScopaGame implements CardGame {
 	}
 	
 	public void letOpponentPlay() {
-		Card cardThatOpponentChoosesToPlay = opponentHand.first();
-		play(cardThatOpponentChoosesToPlay, opponentHand, opponentCaptures);
+		play(computerPlayer.playACard(), computerPlayer);
 	}
 
 	public void addToPlayerHand(String card) {
@@ -72,7 +43,7 @@ public class ScopaGame implements CardGame {
 
 	public void addToOpponentHand(String ... cards) {
 		for (String card : cards) {
-			opponentHand.add(Card.parse(card));
+			computerPlayer.isDealt(Card.parse(card));
 		}
 	}
 
@@ -89,11 +60,11 @@ public class ScopaGame implements CardGame {
 	}
 
 	public String[] getOpponentCaptures() {
-		return opponentCaptures.toParams();
+		return computerPlayer.showCaptures();
 	}
 
 	public String[] getOpponentHand() {
-		return opponentHand.toParams();
+		return computerPlayer.showHand();
 	}
 
 	public String[] getTable() {
@@ -119,10 +90,8 @@ public class ScopaGame implements CardGame {
 	}
 
 	private void clear() {
-		humanPlayer.reset();
-		
-		opponentHand = new CardSet();
-		opponentCaptures = new CardSet();
+		humanPlayer.reset();		
+		computerPlayer.reset();
 		table = new CardSet();
 		deck.shuffle();
 	}
@@ -142,18 +111,4 @@ public class ScopaGame implements CardGame {
 			player.capture(playedCard, matchingCard);
 		}
 	}
-
-	private void play(Card playedCard, CardSet hand, CardSet captures) {
-		hand.remove(playedCard);
-		CardSet allMatching = table.allMatching(playedCard);
-		if (allMatching.isEmpty()) {
-			table.add(playedCard);
-		} else {
-			Card matchingCard = allMatching.first();
-			table.remove(matchingCard);
-			captures.add(playedCard);
-			captures.add(matchingCard);
-		}
-	}
-
 }
