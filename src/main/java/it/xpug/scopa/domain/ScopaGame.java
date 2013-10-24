@@ -6,11 +6,37 @@ import static it.xpug.scopa.domain.Card.*;
 public class ScopaGame implements CardGame {
 
 	private Deck deck;
-	private CardSet playerHand;
-	private CardSet playerCaptures;
+	private Player humanPlayer = new Player();
 	private CardSet table;
 	private CardSet opponentHand;
 	private CardSet opponentCaptures;
+	
+	public static class Player {
+		private CardSet hand;
+		private CardSet captures;
+		public void isDealt(Card card) {
+			hand.add(card);
+		}
+		public void isDealt(int count, Deck deck) {
+			hand.add(count, deck);
+		}
+		public String[] showHand() {
+			return hand.toParams();
+		}
+		public void reset() {
+			hand = new CardSet();
+			captures = new CardSet();
+		}
+		public void remove(Card playedCard) {
+			hand.remove(playedCard);
+		}
+		public String[] showCaptures() {
+			return captures.toParams();
+		}
+		public void capture(Card ... cards) {
+			captures.add(cards);
+		}
+	}
 	
 	public ScopaGame() {
 		this(new Deck());
@@ -41,7 +67,7 @@ public class ScopaGame implements CardGame {
 	}
 
 	public void addToPlayerHand(String card) {
-		playerHand.add(parse(card));
+		humanPlayer.isDealt(parse(card));
 	}
 
 	public void addToOpponentHand(String ... cards) {
@@ -55,11 +81,11 @@ public class ScopaGame implements CardGame {
 	}
 
 	public String[] getPlayerHand() {
-		return playerHand.toParams();
+		return humanPlayer.showHand();
 	}
 
 	public String[] getPlayerCaptures() {
-		return playerCaptures.toParams();
+		return humanPlayer.showCaptures();
 	}
 
 	public String[] getOpponentCaptures() {
@@ -76,7 +102,7 @@ public class ScopaGame implements CardGame {
 
 	@Override
 	public int getCountOfCapturedCards() {
-		return playerCaptures.size();
+		return humanPlayer.showCaptures().length;
 	}
 
 	@Override
@@ -85,24 +111,36 @@ public class ScopaGame implements CardGame {
 	}
 
 	private void dealToTable() {
-		table.addMany(4, deck);
+		table.add(4, deck);
 	}
 
 	private void dealToPlayer() {
-		playerHand.addMany(3, deck);
+		humanPlayer.isDealt(3, deck);
 	}
 
 	private void clear() {
-		playerHand = new CardSet();
+		humanPlayer.reset();
+		
 		opponentHand = new CardSet();
-		playerCaptures = new CardSet();
 		opponentCaptures = new CardSet();
 		table = new CardSet();
 		deck.shuffle();
 	}
 
 	private void play(Card playedCard) {
-		play(playedCard, playerHand, playerCaptures);
+		play(playedCard, humanPlayer);
+	}
+
+	private void play(Card playedCard, Player player) {
+		player.remove(playedCard);
+		CardSet allMatching = table.allMatching(playedCard);
+		if (allMatching.isEmpty()) {
+			table.add(playedCard);
+		} else {
+			Card matchingCard = allMatching.first();
+			table.remove(matchingCard);
+			player.capture(playedCard, matchingCard);
+		}
 	}
 
 	private void play(Card playedCard, CardSet hand, CardSet captures) {

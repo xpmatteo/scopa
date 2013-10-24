@@ -1,5 +1,7 @@
 package it.xpug.scopa.domain;
 
+import static java.util.Arrays.*;
+
 import java.util.*;
 
 
@@ -8,7 +10,7 @@ public class CardSet {
 	private List<Card> cards = new ArrayList<Card>();
 
 	public CardSet(Card ...cards) {
-		this.cards.addAll(Arrays.asList(cards));
+		this.cards.addAll(asList(cards));
 	}
 
 	public CardSet(String[] cards) {
@@ -17,11 +19,11 @@ public class CardSet {
 		}
 	}
 
-	public void add(Card card) {
-		cards.add(card);
+	public void add(Card ... cards) {
+		this.cards.addAll(asList(cards));
 	}
 
-	public void addMany(int count, Deck deck) {
+	public void add(int count, Deck deck) {
 		for (int i=0; i < count; i++)
 			this.add(deck.dealOneCard());
 	}
