@@ -6,6 +6,6 @@ public interface CardGame {
 
 	String[] getTable();
 	String[] getPlayerHand();
-	int getCountOfCapturedCards();
+	int getCountOfPlayerCapturedCards();
 	int getCountOfCardsLeftInTheDeck();
 }

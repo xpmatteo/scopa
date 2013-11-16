@@ -1,5 +1,5 @@
 <#macro cardImage source name>
-  <img src="/images/cards/${source}.jpg" alt="${name}" title="${name}" width="100px"/>
+  <img src="/images/cards/${source}.jpg" alt="${name}" title="${name}" width="60" />
 </#macro>
 <!DOCTYPE html>
 <html>
@@ -11,11 +11,15 @@
   <body>
     <div id="content">
       <h1>Welcome to Scopa!!!</h1>
-      
-      <p id="playerCaptures" class="cardPile">
-        You have captured ${game.countOfCapturedCards} cards
+
+      <p id="opponentHand" class="cardPile">
+        Opponent has ${game.countOfOpponentHand} cards in hand
       </p>
 
+      <p id="opponentCaptures" class="cardPile">
+        Opponent has captured ${game.countOfOpponentCapturedCards} cards
+      </p>
+      
       <p id="deck">
         The deck contains <span id="cards-left-in-the-deck">${game.countOfCardsLeftInTheDeck}</span> cards
       </p>
@@ -47,12 +51,16 @@
         </ul>
       </div>
 
+      <p id="playerCaptures" class="cardPile">
+        You have captured ${game.countOfPlayerCapturedCards} cards
+      </p>
+
       
       <form method="post">
         <input type="submit" name="new-game-command" value="Start New Game" id="new-game-command"/>
       </form>
       
-      <address style="font-size: xx-small">
+      <address style="font-size: xx-small; margin-top: 5em">
         Cards By Poulpy <a href="http://creativecommons.org/licenses/by-sa/3.0">CC-BY-SA-3.0</a>, via Wikimedia Commons
       </address>
   </div>  

@@ -11,24 +11,26 @@ import it.xpug.scopa.domain.*;
 import org.junit.*;
 
 public class GameSetupScenarioTest {
+	Deck deck = new Deck(new Random(1234));
+	ScopaGame scopaGame = new ScopaGame(deck) {{
+		startNewGame();
+	}};
 
 	@Test
 	public void theProperNumberOfCardsAreDealt() {
-		ScopaGame scopaGame = new ScopaGame();
-		
-		scopaGame.startNewGame();
-		
 		assertEquals(3, scopaGame.getPlayerHand().length);
+		assertEquals(3, scopaGame.getcountOfOpponentHand());
 		assertEquals(4, scopaGame.getTable().length);
 	}
 
 	@Test
+	public void noPlayerHasCapturedCards() {
+		assertEquals(0, scopaGame.getCountOfPlayerCapturedCards());
+		assertEquals(0, scopaGame.getCountOfOpponentCapturedCards());		
+	}
+
+	@Test
 	public void cardsAreDealtRandomly() {
-		Deck deck = new Deck(new Random(1234));
-		ScopaGame scopaGame = new ScopaGame(deck);
-		
-		scopaGame.startNewGame();
-		
 		assertThat(scopaGame.getPlayerHand()[0], is("coins-04"));
 		assertThat(scopaGame.getTable()[0], is("cups-03"));
 

@@ -69,7 +69,7 @@ public class ScopaGame implements CardGame {
 	}
 
 	@Override
-	public int getCountOfCapturedCards() {
+	public int getCountOfPlayerCapturedCards() {
 		return humanPlayer.showCaptures().length;
 	}
 
@@ -106,5 +106,13 @@ public class ScopaGame implements CardGame {
 
 	private void letOpponentPlay() {
 		play(computerPlayer.playACard(), computerPlayer);
+	}
+
+	public int getCountOfOpponentCapturedCards() {
+		return 0;
+	}
+
+	public int getcountOfOpponentHand() {
+		return getOpponentHand().length;
 	}
 }

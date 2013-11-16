@@ -8,7 +8,7 @@ import java.util.*;
 import org.junit.*;
 import org.openqa.selenium.*;
 
-public class NewGameScenarioTest extends GuiTest {
+public class NewGameGuiTest extends GuiTest {
 
 	@Test
 	public void whenAGameIsInProgres_ICanCreateANewGame() throws Exception {

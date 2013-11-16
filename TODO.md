@@ -1,5 +1,6 @@
 
-+ When opponent plays, an event describing the move is available to the GUI
++ Show number of cards of opponent
+- When opponent plays, an event describing the move is available to the GUI
 
 - Proper sequence of game
   + Deal cards

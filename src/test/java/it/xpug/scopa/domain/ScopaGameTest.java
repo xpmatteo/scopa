@@ -32,6 +32,7 @@ public class ScopaGameTest {
 		scopaGame.play(scopaGame.getPlayerHand()[0]);
 		
 		assertEquals(2, scopaGame.getPlayerHand().length);
-		assertEquals(2, scopaGame.getOpponentHand().length);		
+		assertEquals(2, scopaGame.getOpponentHand().length);
+		assertEquals(2, scopaGame.getcountOfOpponentHand());
 	}
 }
