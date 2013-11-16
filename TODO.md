@@ -1,8 +1,10 @@
 
++ When opponent plays, an event describing the move is available to the GUI
+
 - Proper sequence of game
-  - Deal cards
-  - Human plays, Computer opponent plays (x3)
-  - Deal cards
+  + Deal cards
+  + Human plays, Computer opponent plays (x3)
+  + Deal cards again
   - ...
   - Game over, winner is declared
   
@@ -10,7 +12,6 @@
   - Play more games, keep score
   - Winner is first player to score 21
   
-- When opponent plays, an event describing the move is available to the GUI
 
 - Capture rules: capture by sum
 - Capture rules: forced choice
@@ -22,3 +23,7 @@
 - More games can be played in different browsers at the same time
 
 - The computer plays a greedy strategy
+
+- Play Scopone in 2
+
+- Play Scopa in 4
