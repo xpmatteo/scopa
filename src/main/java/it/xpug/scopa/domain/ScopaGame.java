@@ -6,16 +6,22 @@ import static it.xpug.scopa.domain.Card.*;
 public class ScopaGame implements CardGame {
 
 	private Deck deck;
-	private Player humanPlayer = new Player();
+	private Player humanPlayer;
 	private Player computerPlayer = new Player();
-	private ScopaTable table = new ScopaTable();
+	private ScopaTable table;
 	
 	public ScopaGame() {
 		this(new Deck());
 	}
 
 	public ScopaGame(Deck deck) {
+		this(deck, new Player(), new ScopaTable());
+	}
+
+	public ScopaGame(Deck deck, Player humanPlayer, ScopaTable table) {
 		this.deck = deck;
+		this.humanPlayer = humanPlayer;
+		this.table = table;
 		clear();
 	}
 
@@ -34,20 +40,6 @@ public class ScopaGame implements CardGame {
 		}
 	}
 	
-	public void addToPlayerHand(String card) {
-		humanPlayer.isDealt(parse(card));
-	}
-
-	public void addToOpponentHand(String ... cards) {
-		for (String card : cards) {
-			computerPlayer.isDealt(Card.parse(card));
-		}
-	}
-
-	public void addToTable(String card) {
-		table.add(parse(card));
-	}
-
 	public String[] getPlayerHand() {
 		return humanPlayer.showHand();
 	}
@@ -78,6 +70,14 @@ public class ScopaGame implements CardGame {
 		return deck.size();
 	}
 
+	public int getCountOfOpponentCapturedCards() {
+		return 0;
+	}
+
+	public int getCountOfOpponentHand() {
+		return getOpponentHand().length;
+	}
+
 	private void dealToTable() {
 		table.add(4, deck);
 	}
@@ -106,13 +106,5 @@ public class ScopaGame implements CardGame {
 
 	private void letOpponentPlay() {
 		play(computerPlayer.playACard(), computerPlayer);
-	}
-
-	public int getCountOfOpponentCapturedCards() {
-		return 0;
-	}
-
-	public int getcountOfOpponentHand() {
-		return getOpponentHand().length;
 	}
 }

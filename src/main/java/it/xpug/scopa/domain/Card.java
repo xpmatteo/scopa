@@ -46,4 +46,12 @@ public class Card {
 	public String toParam() {
 		return format("%s-%02d", suit.toString().toLowerCase(), rank);
 	}
+
+	public static Card wands(int rank) {
+		return new Card(rank, Suit.WANDS);
+	}
+
+	public static Card swords(int rank) {
+		return new Card(rank, Suit.SWORDS);
+	}
 }

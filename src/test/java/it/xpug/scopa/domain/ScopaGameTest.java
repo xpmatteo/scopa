@@ -33,6 +33,16 @@ public class ScopaGameTest {
 		
 		assertEquals(2, scopaGame.getPlayerHand().length);
 		assertEquals(2, scopaGame.getOpponentHand().length);
-		assertEquals(2, scopaGame.getcountOfOpponentHand());
+		assertEquals(2, scopaGame.getCountOfOpponentHand());
+	}
+	
+//	@Test
+//	public void whenTheGameIsFinished_itsFinished() throws Exception {
+//		ScopaGame scopaGame = new ScopaGame(emptyDeck());
+//		assertTrue("game is finished", scopaGame.)
+//	}
+
+	private Deck emptyDeck() {
+		return null;
 	}
 }

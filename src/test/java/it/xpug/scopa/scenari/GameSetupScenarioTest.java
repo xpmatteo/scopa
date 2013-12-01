@@ -19,7 +19,7 @@ public class GameSetupScenarioTest {
 	@Test
 	public void theProperNumberOfCardsAreDealt() {
 		assertEquals(3, scopaGame.getPlayerHand().length);
-		assertEquals(3, scopaGame.getcountOfOpponentHand());
+		assertEquals(3, scopaGame.getCountOfOpponentHand());
 		assertEquals(4, scopaGame.getTable().length);
 	}
 

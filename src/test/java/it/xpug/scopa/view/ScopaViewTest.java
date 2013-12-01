@@ -1,5 +1,6 @@
 package it.xpug.scopa.view;
 
+import static it.xpug.scopa.domain.Card.*;
 import static it.xpug.scopa.infrastructure.XmlFragment.*;
 import static org.junit.Assert.*;
 import it.xpug.scopa.adapters.html.*;
@@ -9,18 +10,21 @@ import it.xpug.scopa.infrastructure.*;
 import org.junit.*;
 
 public class ScopaViewTest {
-	private ScopaGame scopaGame = new ScopaGame();
+	private Deck deck = new Deck();
+	private Player player = new Player();
+	private ScopaTable table = new ScopaTable();
+	private ScopaGame scopaGame = new ScopaGame(deck, player, table);
 	private ScopaView view = new ScopaView(scopaGame);
 
 	@Test
 	public void showsCardsFaceupOnTable() throws Exception {
-		scopaGame.addToTable("wands-01");
+		table.add(wands(1));
 		assertNodeExists("//div[@id='table']//li[@class='card']//img[@src='/images/cards/wands-01.jpg']");
 	}
 
 	@Test
 	public void showsButtonsForYourHand() throws Exception {
-		scopaGame.addToPlayerHand("swords-03");
+		player.isDealt(swords(3));
 		XmlFragment page = new XmlFragment(view.toHtml());
 		XmlFragment playerHand = page.getNode("//div[@id='playerHand']");
 		// hidden field
