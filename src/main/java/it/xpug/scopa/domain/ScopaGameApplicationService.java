@@ -3,42 +3,47 @@ package it.xpug.scopa.domain;
 import static it.xpug.scopa.domain.Card.*;
 
 
-public class ScopaGame implements CardGame {
+public class ScopaGameApplicationService implements CardGameService {
 
 	private Deck deck;
 	private Player humanPlayer;
 	private Player computerPlayer = new Player();
+	private ScopaBrain scopaBrain = new ScopaBrain(computerPlayer);
 	private ScopaTable table;
-	
-	public ScopaGame() {
+	private Dealer dealer;
+
+	public ScopaGameApplicationService() {
 		this(new Deck());
 	}
 
-	public ScopaGame(Deck deck) {
+	public ScopaGameApplicationService(Deck deck) {
 		this(deck, new Player(), new ScopaTable());
 	}
 
-	public ScopaGame(Deck deck, Player humanPlayer, ScopaTable table) {
+	public ScopaGameApplicationService(Deck deck, Player humanPlayer, ScopaTable table) {
 		this.deck = deck;
 		this.humanPlayer = humanPlayer;
 		this.table = table;
+		this.dealer = new Dealer(deck, humanPlayer, computerPlayer, table);
 	}
 
 	@Override
-	public void startNewGame() {
-		clear();
-		dealToPlayers();
-		dealToTable();
+	public void onStartNewGame() {
+		humanPlayer.reset();
+		computerPlayer.reset();
+		table.clear();
+		deck.shuffle();
+		dealer.onStartNewGame();
 	}
 
-	public void play(String card) {
-		play(parse(card));
-		letOpponentPlay();
-		if (getPlayerHand().length == 0) {
-			dealToPlayers();
-		}
+	@Override
+	public void onCardPlayed(String card) {
+		Card playedCard = parse(card);
+		humanPlayer.onCardPlayed(playedCard, table);
+		scopaBrain.onCardPlayed(playedCard, table);
+		dealer.onCardPlayer(playedCard, table);
 	}
-	
+
 	public String[] getPlayerHand() {
 		return humanPlayer.showHand();
 	}
@@ -75,36 +80,6 @@ public class ScopaGame implements CardGame {
 
 	public int getCountOfOpponentHand() {
 		return getOpponentHand().length;
-	}
-
-	private void dealToTable() {
-		table.add(4, deck);
-	}
-
-	private void dealToPlayers() {
-		humanPlayer.isDealt(3, deck);
-		computerPlayer.isDealt(3, deck);
-	}
-
-	private void clear() {
-		humanPlayer.reset();		
-		computerPlayer.reset();
-		table.clear();
-		deck.shuffle();
-	}
-
-	private void play(Card playedCard) {
-		play(playedCard, humanPlayer);
-	}
-
-	private void play(Card playedCard, Player player) {
-		player.remove(playedCard);
-		table.play(playedCard);
-		player.capture(table.capturedCards());
-	}
-
-	private void letOpponentPlay() {
-		play(computerPlayer.playACard(), computerPlayer);
 	}
 
 	public boolean isOver() {

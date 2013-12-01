@@ -10,14 +10,14 @@ import javax.servlet.http.*;
 
 public class ScopaServlet extends HttpServlet {	
 	
-	private CardGame service;
+	private CardGameService service;
 
-	public ScopaServlet(CardGame service) {
+	public ScopaServlet(CardGameService service) {
 		this.service = service;
 	}
 	
 	public ScopaServlet() {
-		this(new ScopaGame());
+		this(new ScopaGameApplicationService());
 	}
 
 	@Override
@@ -35,10 +35,10 @@ public class ScopaServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if (req.getParameter("new-game-command") != null) {
-			service.startNewGame();
+			service.onStartNewGame();
 		} else {
 			String card = req.getParameter("card");
-			service.play(card);
+			service.onCardPlayed(card);
 		}
 		resp.sendRedirect("/");
 	}

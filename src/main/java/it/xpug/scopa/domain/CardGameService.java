@@ -1,8 +1,8 @@
 package it.xpug.scopa.domain;
 
-public interface CardGame {
-	void startNewGame();
-	void play(String card);
+public interface CardGameService {
+	void onStartNewGame();
+	void onCardPlayed(String card);
 
 	String[] getTable();
 	String[] getPlayerHand();

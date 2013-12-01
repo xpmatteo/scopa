@@ -3,7 +3,7 @@ package it.xpug.scopa.domain;
 import java.util.*;
 
 public class Player {
-	private CardSet hand = new CardSet();
+	protected CardSet hand = new CardSet();
 	private CardSet captures = new CardSet();
 
 	public void isDealt(Card card) {
@@ -12,6 +12,8 @@ public class Player {
 	public void isDealt(int count, Deck deck) {
 		hand.add(count, deck);
 	}
+
+	// REFACTOR should return cards not params
 	public String[] showHand() {
 		return hand.toParams();
 	}
@@ -36,10 +38,14 @@ public class Player {
 	public void capture(List<Card> capturedCards) {
 		captures.add(capturedCards);
 	}
-	public Card playACard() {
-		return hand.first();
-	}
 	public boolean hasEmptyHand() {
 		return hand.isEmpty();
 	}
+
+	public void onCardPlayed(Card playedCard, ScopaTable table) {
+		remove(playedCard);
+		table.play(playedCard);
+		capture(table.capturedCards());
+	}
+
 }

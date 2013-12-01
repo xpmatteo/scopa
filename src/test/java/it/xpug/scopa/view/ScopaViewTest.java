@@ -13,8 +13,8 @@ public class ScopaViewTest {
 	private Deck deck = new Deck();
 	private Player player = new Player();
 	private ScopaTable table = new ScopaTable();
-	private ScopaGame scopaGame = new ScopaGame(deck, player, table);
-	private ScopaView view = new ScopaView(scopaGame);
+	private ScopaGameApplicationService scopaGameApplicationService = new ScopaGameApplicationService(deck, player, table);
+	private ScopaView view = new ScopaView(scopaGameApplicationService);
 
 	@Test
 	public void showsCardsFaceupOnTable() throws Exception {

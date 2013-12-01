@@ -8,7 +8,7 @@ import org.junit.*;
 
 public class DealCardScenarioTest {
 
-	ScopaGame game = new ScopaGame();
+	ScopaGameApplicationService game = new ScopaGameApplicationService();
 	
 	@Test
 	public void deckNotEmpty() throws Exception {
@@ -18,7 +18,7 @@ public class DealCardScenarioTest {
 	}
 	
 	private void givenTheDeckIsNotEmpty() {
-		game.startNewGame();
+		game.onStartNewGame();
 		assertThat(game.getCountOfCardsLeftInTheDeck(), greaterThan(0));
 	}
 
@@ -28,9 +28,9 @@ public class DealCardScenarioTest {
 	}
 
 	private void whenIPlayMyLastCard() {
-		game.play(game.getPlayerHand()[0]);
-		game.play(game.getPlayerHand()[0]);
-		game.play(game.getPlayerHand()[0]);
+		game.onCardPlayed(game.getPlayerHand()[0]);
+		game.onCardPlayed(game.getPlayerHand()[0]);
+		game.onCardPlayed(game.getPlayerHand()[0]);
 	}
 
 }

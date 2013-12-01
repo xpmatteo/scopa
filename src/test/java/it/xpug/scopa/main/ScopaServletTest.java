@@ -18,7 +18,7 @@ public class ScopaServletTest {
 	HttpServletRequest request = context.mock(HttpServletRequest.class);
 	HttpServletResponse response = context.mock(HttpServletResponse.class);
 	
-	CardGame game = context.mock(CardGame.class);
+	CardGameService game = context.mock(CardGameService.class);
 	ScopaServlet servlet = new ScopaServlet(game);
 	
 	Map<String, String> parameters = new HashMap<String, String>();
@@ -36,7 +36,7 @@ public class ScopaServletTest {
 	public void sendsPlayToService() throws Exception {
 		parameters.put("card", "3-cups");
 		context.checking(new Expectations() {{
-			oneOf(game).play("3-cups");
+			oneOf(game).onCardPlayed("3-cups");
 
 			oneOf(response).sendRedirect("/");
 		}});
@@ -48,7 +48,7 @@ public class ScopaServletTest {
 		parameters.put("new-game-command", "anything");
 
 		context.checking(new Expectations() {{
-			oneOf(game).startNewGame();			
+			oneOf(game).onStartNewGame();			
 			
 			oneOf(response).sendRedirect("/");
 		}});
