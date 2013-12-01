@@ -3,8 +3,9 @@ package it.xpug.scopa.domain;
 import java.util.*;
 
 public class Player {
-	private CardSet hand;
-	private CardSet captures;
+	private CardSet hand = new CardSet();
+	private CardSet captures = new CardSet();
+
 	public void isDealt(Card card) {
 		hand.add(card);
 	}
@@ -28,7 +29,7 @@ public class Player {
 	public void capture(Card ... cards) {
 		captures.add(cards);
 	}
-	
+
 	public void capture(CardSet cards) {
 		captures.add(cards);
 	}
@@ -37,5 +38,8 @@ public class Player {
 	}
 	public Card playACard() {
 		return hand.first();
+	}
+	public boolean hasEmptyHand() {
+		return hand.isEmpty();
 	}
 }

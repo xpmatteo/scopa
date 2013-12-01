@@ -22,7 +22,6 @@ public class ScopaGame implements CardGame {
 		this.deck = deck;
 		this.humanPlayer = humanPlayer;
 		this.table = table;
-		clear();
 	}
 
 	@Override
@@ -106,5 +105,9 @@ public class ScopaGame implements CardGame {
 
 	private void letOpponentPlay() {
 		play(computerPlayer.playACard(), computerPlayer);
+	}
+
+	public boolean isOver() {
+		return humanPlayer.hasEmptyHand() && deck.isEmpty();
 	}
 }

@@ -5,14 +5,18 @@ import java.util.*;
 public class Deck {
 	private final Random random;
 	private List<Card> cards = new ArrayList<Card>();
-	
+
 	public Deck() {
 		this(new Random());
 	}
-	
+
 	public Deck(Random random) {
 		this.random = random;
 		shuffle();
+	}
+
+	public void clear() {
+		cards.clear();
 	}
 
 	public void shuffle() {
@@ -23,7 +27,7 @@ public class Deck {
 			}
 		}
 	}
-	
+
 	public int size() {
 		return cards.size();
 	}
@@ -32,6 +36,10 @@ public class Deck {
 		if (cards.isEmpty())
 			throw new DeckIsEmptyException();
 		return cards.remove(random.nextInt(cards.size()));
+	}
+
+	public boolean isEmpty() {
+		return size() == 0;
 	}
 
 	public class DeckIsEmptyException extends RuntimeException {}
