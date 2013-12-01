@@ -5,6 +5,11 @@ import java.util.*;
 public class Player {
 	protected CardSet hand = new CardSet();
 	private CardSet captures = new CardSet();
+	private ScopaTable table;
+
+	public Player(ScopaTable table) {
+		this.table = table;
+	}
 
 	public void isDealt(Card card) {
 		hand.add(card);
@@ -42,7 +47,7 @@ public class Player {
 		return hand.isEmpty();
 	}
 
-	public void onCardPlayed(Card playedCard, ScopaTable table) {
+	public void onCardPlayed(Card playedCard) {
 		remove(playedCard);
 		table.play(playedCard);
 		capture(table.capturedCards());

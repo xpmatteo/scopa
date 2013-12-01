@@ -7,8 +7,8 @@ public class ScopaGameApplicationService implements CardGameService {
 
 	private Deck deck;
 	private Player humanPlayer;
-	private Player computerPlayer = new Player();
-	private ScopaBrain scopaBrain = new ScopaBrain(computerPlayer);
+	private Player computerPlayer;
+	private ScopaBrain scopaBrain;
 	private ScopaTable table;
 	private Dealer dealer;
 
@@ -17,13 +17,19 @@ public class ScopaGameApplicationService implements CardGameService {
 	}
 
 	public ScopaGameApplicationService(Deck deck) {
-		this(deck, new Player(), new ScopaTable());
+		this(deck, new ScopaTable());
+	}
+
+	public ScopaGameApplicationService(Deck deck, ScopaTable table) {
+		this(deck, new Player(table), table);
 	}
 
 	public ScopaGameApplicationService(Deck deck, Player humanPlayer, ScopaTable table) {
 		this.deck = deck;
-		this.humanPlayer = humanPlayer;
 		this.table = table;
+		this.humanPlayer = humanPlayer;
+		this.computerPlayer = new Player(table);
+		this.scopaBrain = new ScopaBrain(table, computerPlayer);
 		this.dealer = new Dealer(deck, humanPlayer, computerPlayer, table);
 	}
 
@@ -39,9 +45,9 @@ public class ScopaGameApplicationService implements CardGameService {
 	@Override
 	public void onCardPlayed(String card) {
 		Card playedCard = parse(card);
-		humanPlayer.onCardPlayed(playedCard, table);
-		scopaBrain.onCardPlayed(playedCard, table);
-		dealer.onCardPlayer(playedCard, table);
+		humanPlayer.onCardPlayed(playedCard);
+		scopaBrain.onCardPlayed(playedCard);
+		dealer.onCardPlayed(playedCard);
 	}
 
 	public String[] getPlayerHand() {

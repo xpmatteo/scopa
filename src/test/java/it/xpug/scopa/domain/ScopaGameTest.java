@@ -14,7 +14,7 @@ public class ScopaGameTest {
 			scopaGameApplicationService.onStartNewGame();
 		}
 	}
-	
+
 	@Test
 	public void whenGameStarts_bothPlayersAndTableAreDealt() throws Exception {
 		Deck deck = new Deck();
@@ -29,21 +29,21 @@ public class ScopaGameTest {
 	public void afterHumanPlays_computerResponds() throws Exception {
 		ScopaGameApplicationService scopaGameApplicationService = new ScopaGameApplicationService();
 		scopaGameApplicationService.onStartNewGame();
-		
+
 		scopaGameApplicationService.onCardPlayed(scopaGameApplicationService.getPlayerHand()[0]);
-		
+
 		assertEquals(2, scopaGameApplicationService.getPlayerHand().length);
 		assertEquals(2, scopaGameApplicationService.getOpponentHand().length);
 		assertEquals(2, scopaGameApplicationService.getCountOfOpponentHand());
 	}
-	
+
 	@Test
 	public void aNewGame_isNotFinished() throws Exception {
 		ScopaGameApplicationService scopaGameApplicationService = new ScopaGameApplicationService();
 		scopaGameApplicationService.onStartNewGame();
 		assertFalse("game is not over", scopaGameApplicationService.isOver());
 	}
-	
+
 	@Test
 	public void whenBothPlayersHaveNoCardsAndDeckIsEmpty_gameIsOver() throws Exception {
 		ScopaGameApplicationService scopaGameApplicationService = new ScopaGameApplicationService(emptyDeck(), playerWithEmtpyHand(), new ScopaTable());
@@ -63,11 +63,11 @@ public class ScopaGameTest {
 	}
 
 	private Player playerWithEmtpyHand() {
-		return new Player();
+		return new Player(new ScopaTable());
 	}
 
 	private Player playerWithOneCard() {
-		return new Player() {{
+		return new Player(new ScopaTable()) {{
 			isDealt(anyCard());
 		}};
 	}
@@ -77,8 +77,8 @@ public class ScopaGameTest {
 	}
 
 	private Deck emptyDeck() {
-		return new Deck() {{ 
-			clear(); 
+		return new Deck() {{
+			clear();
 		}};
 	}
 }

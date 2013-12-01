@@ -19,7 +19,7 @@ public class Dealer {
 		dealToTable();
 	}
 
-	public void onCardPlayer(Card playedCard, ScopaTable table) {
+	public void onCardPlayed(Card playedCard) {
 		if (humanPlayer.showHand().length == 0) {
 			dealToPlayers();
 		}
