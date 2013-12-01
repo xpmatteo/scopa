@@ -20,7 +20,7 @@ public class Dealer {
 	}
 
 	public void onCardPlayed(Card playedCard) {
-		if (humanPlayer.showHand().length == 0) {
+		if (humanPlayer.hasEmptyHand() && !deck.isEmpty()) {
 			dealToPlayers();
 		}
 	}

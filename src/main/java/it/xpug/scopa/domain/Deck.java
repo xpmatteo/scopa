@@ -3,6 +3,8 @@ package it.xpug.scopa.domain;
 import java.util.*;
 
 public class Deck {
+	public static final Deck EMPTY = new Deck() {{ clear(); }};
+
 	private final Random random;
 	private List<Card> cards = new ArrayList<Card>();
 

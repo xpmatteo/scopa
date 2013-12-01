@@ -46,13 +46,13 @@ public class ScopaGameTest {
 
 	@Test
 	public void whenBothPlayersHaveNoCardsAndDeckIsEmpty_gameIsOver() throws Exception {
-		ScopaGameApplicationService scopaGameApplicationService = new ScopaGameApplicationService(emptyDeck(), playerWithEmtpyHand(), new ScopaTable());
+		ScopaGameApplicationService scopaGameApplicationService = new ScopaGameApplicationService(Deck.EMPTY, playerWithEmtpyHand(), new ScopaTable());
 		assertTrue("game is over", scopaGameApplicationService.isOver());
 	}
 
 	@Test
 	public void ifAPlayerHasACard_gameIsNotOver() throws Exception {
-		ScopaGameApplicationService scopaGameApplicationService = new ScopaGameApplicationService(emptyDeck(), playerWithOneCard(), new ScopaTable());
+		ScopaGameApplicationService scopaGameApplicationService = new ScopaGameApplicationService(Deck.EMPTY, playerWithOneCard(), new ScopaTable());
 		assertFalse("game is not over", scopaGameApplicationService.isOver());
 	}
 
@@ -74,11 +74,5 @@ public class ScopaGameTest {
 
 	protected Card anyCard() {
 		return swords(1);
-	}
-
-	private Deck emptyDeck() {
-		return new Deck() {{
-			clear();
-		}};
 	}
 }
