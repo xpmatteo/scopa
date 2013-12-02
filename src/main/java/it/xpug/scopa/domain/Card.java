@@ -30,21 +30,35 @@ public class Card {
 		int rank = Integer.parseInt(split[1]);
 		return new Card(rank, suit);
 	}
-	
-	@Override
-	public boolean equals(Object arg0) {
-		if (!(arg0 instanceof Card)) 
-			return false;
-		return this.toString().equals(arg0.toString());
-	}	
-	
-	@Override
-	public int hashCode() {
-		return this.toString().hashCode();
-	}
 
 	public String toParam() {
 		return format("%s-%02d", suit.toString().toLowerCase(), rank);
+	}
+
+	public String name() {
+		return rankName() + " di " + suit.italianName();
+	}
+
+	private String rankName() {
+		switch(rank) {
+			case  1: return "Asso";
+			case  8: return "Fante";
+			case  9: return "Cavallo";
+			case 10: return "Re";
+			default: return Integer.toString(rank);
+		}
+	}
+
+	@Override
+	public boolean equals(Object arg0) {
+		if (!(arg0 instanceof Card))
+			return false;
+		return this.toString().equals(arg0.toString());
+	}
+
+	@Override
+	public int hashCode() {
+		return this.toString().hashCode();
 	}
 
 	public static Card wands(int rank) {
@@ -53,5 +67,13 @@ public class Card {
 
 	public static Card swords(int rank) {
 		return new Card(rank, Suit.SWORDS);
+	}
+
+	public static Card cups(int rank) {
+		return new Card(rank, Suit.CUPS);
+	}
+
+	public static Card coins(int rank) {
+		return new Card(rank, Suit.COINS);
 	}
 }

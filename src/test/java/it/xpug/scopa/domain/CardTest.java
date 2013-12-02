@@ -1,5 +1,6 @@
 package it.xpug.scopa.domain;
 
+import static it.xpug.scopa.domain.Card.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
@@ -10,44 +11,48 @@ public class CardTest {
 
 	@Test
 	public void canBeCreatedFromParam() throws Exception {
-		Card expected = new Card(3, Suit.WANDS);
-		Card actual = Card.parse("wands-03");
-		assertEquals(expected.toString(), actual.toString());
+		assertEquals(wands(3).toString(), Card.parse("wands-03").toString());
 	}
-	
+
 	@Test
 	public void returnsItsParam() throws Exception {
-		Card card = new Card(3, Suit.WANDS);
-		assertEquals("wands-03", card.toParam());
+		assertEquals("wands-03", wands(3).toParam());
 	}
-	
+
 	@Test
 	public void cardsWithSameRank_match() throws Exception {
-		Card sevenOfCups = new Card(7, Suit.CUPS);
-		Card sevenOfSwords = new Card(7, Suit.SWORDS);
-		assertThat(sevenOfCups, isMatching(sevenOfSwords));
+		assertThat(cups(7), isMatching(swords(7)));
 	}
-	
+
 	@Test
 	public void cardsWithDifferentRank_doNotMatch() throws Exception {
-		Card sevenOfCups = new Card(7, Suit.CUPS);
-		Card fiveOfCups= new Card(5, Suit.CUPS);
-		assertThat(sevenOfCups, not(isMatching(fiveOfCups)));
+		assertThat(cups(7), not(isMatching(cups(5))));
 	}
-	
+
 	@Test
 	public void hasSensibleToString() throws Exception {
-		Card sevenOfSwords = new Card(7, Suit.SWORDS);
-		assertEquals("7 of swords", sevenOfSwords.toString());
+		assertEquals("7 of swords", swords(7).toString());
 	}
-	
+
+	@Test
+	public void hasItalianName() throws Exception {
+		assertEquals("2 di coppe", cups(2).name());
+		assertEquals("3 di bastoni", wands(3).name());
+		assertEquals("4 di denari", coins(4).name());
+		assertEquals("5 di spade", swords(5).name());
+		assertEquals("Asso di spade", swords(1).name());
+		assertEquals("Fante di denari", coins(8).name());
+		assertEquals("Cavallo di bastoni", wands(9).name());
+		assertEquals("Re di coppe", cups(10).name());
+	}
+
 	@Test
 	public void supportsEquals() throws Exception {
-		Card a = new Card(3, Suit.SWORDS); 
+		Card a = new Card(3, Suit.SWORDS);
 		Card b = new Card(3, Suit.SWORDS);
-		Card c = new Card(5, Suit.SWORDS); 
-		Card d = new Card(3, Suit.CUPS); 
-		
+		Card c = new Card(5, Suit.SWORDS);
+		Card d = new Card(3, Suit.CUPS);
+
 		assertNotEquals(a, null);
 		assertNotEquals(a, "foo");
 		assertEquals(a, a);
