@@ -4,17 +4,14 @@ import static it.xpug.scopa.domain.Card.*;
 import static org.junit.Assert.*;
 
 import java.io.*;
-import java.util.*;
-
-import freemarker.template.*;
-import it.xpug.scopa.adapters.freemarker.*;
-import it.xpug.scopa.domain.*;
 
 import org.junit.*;
 
+import freemarker.template.*;
+
 public class FreemarkerMacrosTest {
 
-	private Map<Object, Object> model = new HashMap<Object, Object>();
+	private SimpleHash model = new SimpleHash();
 
 	@Test
 	public void substitutesVariablesInTemplate() throws Exception {

@@ -22,8 +22,8 @@ public class ScopaGameApplicationServiceTest {
 		Deck deck = new Deck();
 		ScopaGameApplicationService scopaGameApplicationService = new ScopaGameApplicationService(deck);
 		scopaGameApplicationService.onStartNewGame();
-		assertEquals(3, scopaGameApplicationService.getPlayerHand().length);
-		assertEquals(3, scopaGameApplicationService.getOpponentHand().length);
+		assertEquals(3, scopaGameApplicationService.getPlayerHand().size());
+		assertEquals(3, scopaGameApplicationService.getCountOfOpponentHand());
 		assertEquals(4, scopaGameApplicationService.getTable().length);
 	}
 
@@ -32,9 +32,9 @@ public class ScopaGameApplicationServiceTest {
 		ScopaGameApplicationService scopaGameApplicationService = new ScopaGameApplicationService();
 		scopaGameApplicationService.onStartNewGame();
 
-		scopaGameApplicationService.onCardPlayed(scopaGameApplicationService.getPlayerHand()[0]);
+		scopaGameApplicationService.onCardPlayed(scopaGameApplicationService.getPlayerHand().get(0));
 
-		assertEquals(2, scopaGameApplicationService.getPlayerHand().length);
+		assertEquals(2, scopaGameApplicationService.getPlayerHand().size());
 		assertEquals(2, scopaGameApplicationService.getOpponentHand().length);
 		assertEquals(2, scopaGameApplicationService.getCountOfOpponentHand());
 	}
@@ -89,7 +89,7 @@ public class ScopaGameApplicationServiceTest {
 		ScopaGameApplicationService game = new ScopaGameApplicationService(deck);
 		Player computerPlayer = aPlayerWithCountOfCapturedCardsOf(2);
 		Player humanPlayer = aPlayerWithCountOfCapturedCardsOf(0);
-		humanPlayer.isDealt(deck.dealOneCard());
+		humanPlayer.isDealt(deck);
 		game.setComputerPlayer(computerPlayer);
 		game.setHumanPlayer(humanPlayer);
 		assertFalse(game.isOver());

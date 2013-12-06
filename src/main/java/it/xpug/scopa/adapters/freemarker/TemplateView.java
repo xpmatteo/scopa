@@ -7,11 +7,11 @@ import freemarker.template.*;
 
 public class TemplateView {
 
-	private final Map<String, Object> model = new HashMap<String, Object>();
+	private final SimpleHash model = new SimpleHash();
 	private final String templateName;
 	private final String templateDirectory;
-	
-	// Production 
+
+	// Production
 	public TemplateView(String templateName) {
 		this(templateName, "src/main/freemarker");
 	}

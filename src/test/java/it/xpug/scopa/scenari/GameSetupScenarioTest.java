@@ -18,7 +18,7 @@ public class GameSetupScenarioTest {
 
 	@Test
 	public void theProperNumberOfCardsAreDealt() {
-		assertEquals(3, scopaGameApplicationService.getPlayerHand().length);
+		assertEquals(3, scopaGameApplicationService.getPlayerHand().size());
 		assertEquals(3, scopaGameApplicationService.getCountOfOpponentHand());
 		assertEquals(4, scopaGameApplicationService.getTable().length);
 	}
@@ -26,16 +26,16 @@ public class GameSetupScenarioTest {
 	@Test
 	public void noPlayerHasCapturedCards() {
 		assertEquals(0, scopaGameApplicationService.getCountOfPlayerCapturedCards());
-		assertEquals(0, scopaGameApplicationService.getCountOfOpponentCapturedCards());		
+		assertEquals(0, scopaGameApplicationService.getCountOfOpponentCapturedCards());
 	}
 
 	@Test
 	public void cardsAreDealtRandomly() {
-		assertThat(scopaGameApplicationService.getPlayerHand()[0], is("coins-04"));
+		assertThat(scopaGameApplicationService.getPlayerHand().get(0), is("coins-04"));
 		assertThat(scopaGameApplicationService.getTable()[0], is("cups-03"));
 
-		scopaGameApplicationService.onStartNewGame();		
-		assertThat(scopaGameApplicationService.getPlayerHand()[0], is("cups-01"));
+		scopaGameApplicationService.onStartNewGame();
+		assertThat(scopaGameApplicationService.getPlayerHand().get(0), is("cups-01"));
 		assertThat(scopaGameApplicationService.getTable()[0], is("coins-02"));
 	}
 }

@@ -1,6 +1,9 @@
 package it.xpug.scopa.domain;
 
 import static it.xpug.scopa.domain.Card.*;
+import static java.util.Arrays.*;
+
+import java.util.*;
 
 
 public class ScopaGameApplicationService implements CardGameService {
@@ -50,8 +53,8 @@ public class ScopaGameApplicationService implements CardGameService {
 		dealer.onCardPlayed(playedCard);
 	}
 
-	public String[] getPlayerHand() {
-		return humanPlayer.showHand();
+	public List<String> getPlayerHand() {
+		return asList(humanPlayer.showHand());
 	}
 
 	public String[] getPlayerCaptures() {

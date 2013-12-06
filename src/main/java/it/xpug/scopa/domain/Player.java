@@ -14,6 +14,11 @@ public class Player {
 	public void isDealt(Card card) {
 		hand.add(card);
 	}
+
+	public void isDealt(Deck deck) {
+		this.isDealt(1, deck);
+	}
+
 	public void isDealt(int count, Deck deck) {
 		hand.add(count, deck);
 	}
@@ -22,15 +27,17 @@ public class Player {
 	public String[] showHand() {
 		return hand.toParams();
 	}
-	public void reset() {
-		hand = new CardSet();
-		captures = new CardSet();
-	}
-	public void remove(Card playedCard) {
-		hand.remove(playedCard);
-	}
+
 	public String[] showCaptures() {
 		return captures.toParams();
+	}
+
+	public boolean hasEmptyHand() {
+		return hand.isEmpty();
+	}
+
+	public void remove(Card playedCard) {
+		hand.remove(playedCard);
 	}
 
 	public void capture(Card ... cards) {
@@ -40,11 +47,14 @@ public class Player {
 	public void capture(CardSet cards) {
 		captures.add(cards);
 	}
+
 	public void capture(List<Card> capturedCards) {
 		captures.add(capturedCards);
 	}
-	public boolean hasEmptyHand() {
-		return hand.isEmpty();
+
+	public void reset() {
+		hand = new CardSet();
+		captures = new CardSet();
 	}
 
 	public void onCardPlayed(Card playedCard) {
