@@ -10,20 +10,25 @@
   </head>
   <body>
     <div id="content">
-      <h1>Welcome to Scopa!!!</h1>
-
-      <p id="opponentHand" class="cardPile">
-        Opponent has ${game.countOfOpponentHand} cards in hand
-      </p>
+      <h1 id="logo">Scopa</h1>
+      <#if game.isOver()>
+      <h2>Game over!</h2>
+      </#if>
+      <#if game.hasOpponentWon()>
+      <h2>You lost!</h2>
+      </#if>
 
       <p id="opponentCaptures" class="cardPile">
         Opponent has captured ${game.countOfOpponentCapturedCards} cards
       </p>
+      <p id="playerCaptures" class="cardPile">
+        You have captured ${game.countOfPlayerCapturedCards} cards
+      </p>
       
+      <#if !game.isOver()>
       <p id="deck">
         The deck contains <span id="cards-left-in-the-deck">${game.countOfCardsLeftInTheDeck}</span> cards
       </p>
-
       <div id="table" class="cardSet">
         <h2>Table</h2>
         <ul>
@@ -50,10 +55,8 @@
           </#list>
         </ul>
       </div>
+      </#if>
 
-      <p id="playerCaptures" class="cardPile">
-        You have captured ${game.countOfPlayerCapturedCards} cards
-      </p>
 
       
       <form method="post">

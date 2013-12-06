@@ -5,7 +5,9 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-public class ScopaGameTest {
+public class ScopaGameApplicationServiceTest {
+
+	Deck deck = new Deck();
 
 	@Test
 	public void canRestartTheGameAsManyTimesAsWeWant() {
@@ -62,8 +64,53 @@ public class ScopaGameTest {
 		assertFalse("game is not over", scopaGameApplicationService.isOver());
 	}
 
-	private Player playerWithEmtpyHand() {
+	@Test
+	public void returnsCountOfOpponentCapturedCards() throws Exception {
+		ScopaGameApplicationService game = new ScopaGameApplicationService();
+		Player player = aPlayerWithCountOfCapturedCardsOf(2);
+		game.setComputerPlayer(player);
+		assertEquals(2, game.getCountOfOpponentCapturedCards());
+
+	}
+
+	@Test
+	public void opponentHasWonWhen_gameIsOver_and_opponentHasMoreCapturedCards() throws Exception {
+		ScopaGameApplicationService game = new ScopaGameApplicationService(deck);
+		Player computerPlayer = aPlayerWithCountOfCapturedCardsOf(22);
+		Player humanPlayer = aPlayerWithCountOfCapturedCardsOf(18);
+		game.setComputerPlayer(computerPlayer);
+		game.setHumanPlayer(humanPlayer);
+		assertTrue(game.isOver());
+		assertTrue(game.hasOpponentWon());
+	}
+
+	@Test
+	public void opponentHasNotWonWhen_gameNotIsOver() throws Exception {
+		ScopaGameApplicationService game = new ScopaGameApplicationService(deck);
+		Player computerPlayer = aPlayerWithCountOfCapturedCardsOf(2);
+		Player humanPlayer = aPlayerWithCountOfCapturedCardsOf(0);
+		humanPlayer.isDealt(deck.dealOneCard());
+		game.setComputerPlayer(computerPlayer);
+		game.setHumanPlayer(humanPlayer);
+		assertFalse(game.isOver());
+		assertFalse(game.hasOpponentWon());
+	}
+
+
+	private Player aPlayerWithCountOfCapturedCardsOf(int count) {
+		Player player = new Player(new ScopaTable());
+		for (int i = 0; i < count; i++) {
+			player.capture(deck.dealOneCard());
+		}
+		return player;
+	}
+
+	private Player aPlayer() {
 		return new Player(new ScopaTable());
+	}
+
+	private Player playerWithEmtpyHand() {
+		return aPlayer();
 	}
 
 	private Player playerWithOneCard() {

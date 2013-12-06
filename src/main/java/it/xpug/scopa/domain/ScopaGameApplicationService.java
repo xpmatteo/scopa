@@ -81,14 +81,30 @@ public class ScopaGameApplicationService implements CardGameService {
 	}
 
 	public int getCountOfOpponentCapturedCards() {
-		return 0;
+		return computerPlayer.showCaptures().length;
 	}
 
 	public int getCountOfOpponentHand() {
 		return getOpponentHand().length;
 	}
 
+	public void setComputerPlayer(Player player) {
+		computerPlayer = player;
+	}
+
+	public void setHumanPlayer(Player humanPlayer) {
+		this.humanPlayer = humanPlayer;
+	}
+
 	public boolean isOver() {
 		return humanPlayer.hasEmptyHand() && deck.isEmpty();
+	}
+
+	public boolean hasOpponentWon() {
+		return isOver() && opponentHasMoreCards();
+	}
+
+	private boolean opponentHasMoreCards() {
+		return humanPlayer.showCaptures().length < computerPlayer.showCaptures().length;
 	}
 }

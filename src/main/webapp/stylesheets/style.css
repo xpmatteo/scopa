@@ -25,3 +25,7 @@ body {
 .cardSet form {
 	display: inline;
 }
+
+h1#logo {
+	float: right;
+}

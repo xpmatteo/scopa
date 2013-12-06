@@ -1,13 +1,12 @@
 
-+ Show number of cards of opponent
+- Bug: opponent captures not shown
+
+- Game over, winner is declared
+
 - When opponent plays, an event describing the move is available to the GUI
 
-- Proper sequence of game
-  + Deal cards
-  + Human plays, Computer opponent plays (x3)
-  + Deal cards again
-  - ...
-  - Game over, winner is declared
+- REFACTOR: use collections not arrays
+
   
 - Proper sequence of games in a contest
   - Play more games, keep score
@@ -17,7 +16,6 @@
 - Capture rules: capture by sum
 - Capture rules: forced choice
 - Capture options: choose which card you want to play
-
 
 - Scoring rules: carte, primiera, settebello
 
