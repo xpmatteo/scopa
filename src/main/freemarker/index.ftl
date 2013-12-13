@@ -11,12 +11,7 @@
   <body>
     <div id="content">
       <h1 id="logo">Scopa</h1>
-      <#if game.isOver()>
-      <h2>Game over!</h2>
-      </#if>
-      <#if game.hasOpponentWon()>
-      <h2>You lost!</h2>
-      </#if>
+      <h2>${game.statusMessage}</h2>
 
       <p id="opponentCaptures" class="cardPile">
         Opponent has captured ${game.countOfOpponentCapturedCards} cards
@@ -30,7 +25,7 @@
         The deck contains <span id="cards-left-in-the-deck">${game.countOfCardsLeftInTheDeck}</span> cards
       </p>
       <div id="table" class="cardSet">
-        <h2>Table</h2>
+        <h3>Table</h3>
         <ul>
           <#list game.table as card>
           <li class='card'>
@@ -41,7 +36,7 @@
       </div>
 
       <div id="playerHand" class="cardSet">
-        <h2>Your hand</h2>
+        <h3>Your hand</h3>
         <ul>
           <#list game.playerHand as card>
           <li>

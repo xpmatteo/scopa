@@ -75,11 +75,7 @@ public class ScopaGameApplicationServiceTest {
 
 	@Test
 	public void opponentHasWonWhen_gameIsOver_and_opponentHasMoreCapturedCards() throws Exception {
-		ScopaGameApplicationService game = new ScopaGameApplicationService(deck);
-		Player computerPlayer = aPlayerWithCountOfCapturedCardsOf(22);
-		Player humanPlayer = aPlayerWithCountOfCapturedCardsOf(18);
-		game.setComputerPlayer(computerPlayer);
-		game.setHumanPlayer(humanPlayer);
+		ScopaGameApplicationService game = aGameThatComputerHasWon();
 		assertTrue(game.isOver());
 		assertTrue(game.hasOpponentWon());
 	}
@@ -95,6 +91,60 @@ public class ScopaGameApplicationServiceTest {
 		assertFalse(game.isOver());
 		assertFalse(game.hasOpponentWon());
 	}
+
+	@Test
+	public void whenGameIsInProgress_showPlayACard() throws Exception {
+		ScopaGameApplicationService game = aGameInProgress();
+		assertEquals("Play a card", game.getStatusMessage());
+	}
+
+	@Test
+	public void whenComputerPlayerHasWon_showYouHaveLost() throws Exception {
+		ScopaGameApplicationService game = aGameThatComputerHasWon();
+		assertEquals("You have lost!", game.getStatusMessage());
+	}
+
+	@Test
+	public void whenHumanPlayerHasWon_showYouHaveWon() throws Exception {
+		ScopaGameApplicationService game = aGameThatHumanHasWon();
+		assertEquals("You have won!", game.getStatusMessage());
+	}
+
+	@Test
+	public void whenGameIsOver_andNobodyWon_showItsEven() throws Exception {
+		ScopaGameApplicationService game = aGameThatNobodyHasWon();
+		assertEquals("Game over; nobody won!", game.getStatusMessage());
+	}
+
+	private ScopaGameApplicationService aGameThatHumanHasWon() {
+		return aGameOverWithCaptures(18, 22);
+	}
+
+	private ScopaGameApplicationService aGameThatNobodyHasWon() {
+		return aGameOverWithCaptures(20, 20);
+	}
+
+	private ScopaGameApplicationService aGameOverWithCaptures(int countOfComputerCaptures, int countOfHumanCaptures) {
+		ScopaGameApplicationService game = new ScopaGameApplicationService(deck);
+		Player computerPlayer = aPlayerWithCountOfCapturedCardsOf(countOfComputerCaptures);
+		Player humanPlayer = aPlayerWithCountOfCapturedCardsOf(countOfHumanCaptures);
+		game.setComputerPlayer(computerPlayer);
+		game.setHumanPlayer(humanPlayer);
+		return game;
+	}
+
+	private ScopaGameApplicationService aGameThatComputerHasWon() {
+		return aGameOverWithCaptures(22, 18);
+	}
+
+
+
+	private ScopaGameApplicationService aGameInProgress() {
+		ScopaGameApplicationService game = new ScopaGameApplicationService(deck);
+		game.onStartNewGame();
+		return game;
+	}
+
 
 
 	private Player aPlayerWithCountOfCapturedCardsOf(int count) {

@@ -17,27 +17,27 @@ public class ScopaServletTest {
 	@Rule public JUnitRuleMockery context = new JUnitRuleMockery();
 	HttpServletRequest request = context.mock(HttpServletRequest.class);
 	HttpServletResponse response = context.mock(HttpServletResponse.class);
-	
+
 	CardGameService game = context.mock(CardGameService.class);
-	ScopaServlet servlet = new ScopaServlet(game);
-	
+	ScopaServlet servlet;
+
 	Map<String, String> parameters = new HashMap<String, String>();
-	
+
 	@Before
 	public void setUp() throws Exception {
 		context.checking(new Expectations() {{
 			allowing(request).getParameter(with(any(String.class)));
-			will(returnTheParameter());			
+			will(returnTheParameter());
 		}});
+		servlet = new ScopaServlet(game);
 	}
-	
+
 
 	@Test
 	public void sendsPlayToService() throws Exception {
 		parameters.put("card", "3-cups");
 		context.checking(new Expectations() {{
 			oneOf(game).onCardPlayed("3-cups");
-
 			oneOf(response).sendRedirect("/");
 		}});
 		servlet.doPost(request, response);
@@ -48,8 +48,8 @@ public class ScopaServletTest {
 		parameters.put("new-game-command", "anything");
 
 		context.checking(new Expectations() {{
-			oneOf(game).onStartNewGame();			
-			
+			oneOf(game).onStartNewGame();
+
 			oneOf(response).sendRedirect("/");
 		}});
 		servlet.doPost(request, response);
@@ -61,7 +61,7 @@ public class ScopaServletTest {
 			public Object invoke(Invocation invocation) throws Throwable {
 				return parameters.get(invocation.getParameter(0));
 			}
-			
+
 			@Override
 			public void describeTo(Description arg0) {
 			}
