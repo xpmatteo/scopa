@@ -2,6 +2,8 @@ package it.xpug.scopa.domain;
 
 import static org.junit.Assert.*;
 
+import java.util.*;
+
 import org.junit.*;
 
 public class CardSetTest {
@@ -14,15 +16,15 @@ public class CardSetTest {
 	@Test
 	public void supportsEquals() {
 		CardSet a = new CardSet();
-		
+
 		assertNotEquals(a, null);
 		assertNotEquals(a, "foo");
 		assertEquals(a, a);
 	}
-	
+
 	@Test
 	public void returnsArrayOfParams() throws Exception {
-		String[] expected = new String[] { "coins-02", "cups-01", "cups-02" };
-		assertArrayEquals(expected , set.toParams());
+		List<String> expected = Arrays.asList("coins-02", "cups-01", "cups-02");
+		assertEquals(expected , set.toParams());
 	}
 }

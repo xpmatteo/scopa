@@ -9,7 +9,7 @@ public class ScopaBrain {
 	}
 
 	public void onCardPlayed(Card playedCard) {
-		player.onCardPlayed(Card.parse(player.showHand()[0]));
+		player.onCardPlayed(Card.parse(player.showHand().get(0)));
 	}
 
 }

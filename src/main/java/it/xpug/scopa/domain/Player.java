@@ -15,7 +15,7 @@ public class Player {
 		hand.add(card);
 	}
 
-	public void isDealt(Deck deck) {
+	public void isDealtOneCard(Deck deck) {
 		this.isDealt(1, deck);
 	}
 
@@ -24,11 +24,11 @@ public class Player {
 	}
 
 	// REFACTOR should return cards not params
-	public String[] showHand() {
+	public List<String> showHand() {
 		return hand.toParams();
 	}
 
-	public String[] showCaptures() {
+	public List<String> showCaptures() {
 		return captures.toParams();
 	}
 

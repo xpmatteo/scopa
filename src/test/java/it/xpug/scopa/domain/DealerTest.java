@@ -15,12 +15,12 @@ public class DealerTest {
 	public void whenPlayerStillHasCards_willNotDealCards() {
 		humanPlayer.isDealt(anyCard());
 		assertFalse(deck.isEmpty());
-		assertEquals(1, humanPlayer.showHand().length);
+		assertEquals(1, humanPlayer.showHand().size());
 
 		dealer.onCardPlayed(anyCard());
 
-		assertEquals(1, humanPlayer.showHand().length);
-		assertEquals(0, computerPlayer.showHand().length);
+		assertEquals(1, humanPlayer.showHand().size());
+		assertEquals(0, computerPlayer.showHand().size());
 	}
 
 
@@ -31,8 +31,8 @@ public class DealerTest {
 
 		dealer.onCardPlayed(anyCard());
 
-		assertEquals(3, humanPlayer.showHand().length);
-		assertEquals(3, computerPlayer.showHand().length);
+		assertEquals(3, humanPlayer.showHand().size());
+		assertEquals(3, computerPlayer.showHand().size());
 		assertEquals(0, table.size());
 	}
 

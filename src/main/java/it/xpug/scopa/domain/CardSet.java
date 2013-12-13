@@ -30,7 +30,7 @@ public class CardSet {
 	public void add(List<Card> cards) {
 		this.cards.addAll(cards);
 	}
-	
+
 	public void add(CardSet others) {
 		this.cards.addAll(others.cards);
 	}
@@ -43,7 +43,7 @@ public class CardSet {
 	public void remove(Card card) {
 		cards.remove(card);
 	}
-	
+
 	@Override
 	public String toString() {
 		return cards.toString();
@@ -70,13 +70,13 @@ public class CardSet {
 		return cards.iterator().next();
 	}
 
-	public String[] toParams() {
+	public List<String> toParams() {
 		List<String> list = new ArrayList<String>();
 		for (Card card : cards) {
 			list.add(card.toParam());
 		}
 		Collections.sort(list);
-		return list.toArray(new String[0]);
+		return list;
 	}
 
 	public int size() {
@@ -87,5 +87,5 @@ public class CardSet {
 		cards.clear();
 	}
 
-	
+
 }

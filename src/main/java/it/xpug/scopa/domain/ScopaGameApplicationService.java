@@ -1,7 +1,6 @@
 package it.xpug.scopa.domain;
 
 import static it.xpug.scopa.domain.Card.*;
-import static java.util.Arrays.*;
 
 import java.util.*;
 
@@ -54,28 +53,28 @@ public class ScopaGameApplicationService implements CardGameService {
 	}
 
 	public List<String> getPlayerHand() {
-		return asList(humanPlayer.showHand());
+		return humanPlayer.showHand();
 	}
 
-	public String[] getPlayerCaptures() {
+	public List<String> getPlayerCaptures() {
 		return humanPlayer.showCaptures();
 	}
 
-	public String[] getOpponentCaptures() {
+	public List<String> getOpponentCaptures() {
 		return computerPlayer.showCaptures();
 	}
 
-	public String[] getOpponentHand() {
+	public List<String> getOpponentHand() {
 		return computerPlayer.showHand();
 	}
 
-	public String[] getTable() {
+	public List<String> getTable() {
 		return table.toParams();
 	}
 
 	@Override
 	public int getCountOfPlayerCapturedCards() {
-		return humanPlayer.showCaptures().length;
+		return humanPlayer.showCaptures().size();
 	}
 
 	@Override
@@ -84,11 +83,11 @@ public class ScopaGameApplicationService implements CardGameService {
 	}
 
 	public int getCountOfOpponentCapturedCards() {
-		return computerPlayer.showCaptures().length;
+		return computerPlayer.showCaptures().size();
 	}
 
 	public int getCountOfOpponentHand() {
-		return getOpponentHand().length;
+		return getOpponentHand().size();
 	}
 
 	public void setComputerPlayer(Player player) {
@@ -112,15 +111,15 @@ public class ScopaGameApplicationService implements CardGameService {
 	}
 
 	private boolean opponentHasMoreCards() {
-		return humanPlayer.showCaptures().length < computerPlayer.showCaptures().length;
+		return humanPlayer.showCaptures().size() < computerPlayer.showCaptures().size();
 	}
 
 	private boolean opponentHasLessCards() {
-		return humanPlayer.showCaptures().length > computerPlayer.showCaptures().length;
+		return humanPlayer.showCaptures().size() > computerPlayer.showCaptures().size();
 	}
 
 	private boolean itsOverNobodyWon() {
-		return isOver() && humanPlayer.showCaptures().length == computerPlayer.showCaptures().length;
+		return isOver() && humanPlayer.showCaptures().size() == computerPlayer.showCaptures().size();
 	}
 
 	public String getStatusMessage() {

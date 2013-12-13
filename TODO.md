@@ -1,6 +1,4 @@
 
-- Display status: "Play", "You won", "You lost", "Draft"
-
 - Highlight the card that I played and the card that the opponent played
 - When opponent plays, an event describing the move is available to the GUI
 
