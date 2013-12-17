@@ -110,18 +110,6 @@ public class ScopaGameApplicationService implements CardGameService {
 		return isOver() && opponentHasLessCards();
 	}
 
-	private boolean opponentHasMoreCards() {
-		return humanPlayer.showCaptures().size() < computerPlayer.showCaptures().size();
-	}
-
-	private boolean opponentHasLessCards() {
-		return humanPlayer.showCaptures().size() > computerPlayer.showCaptures().size();
-	}
-
-	private boolean itsOverNobodyWon() {
-		return isOver() && humanPlayer.showCaptures().size() == computerPlayer.showCaptures().size();
-	}
-
 	public String getStatusMessage() {
 		if (hasHumanWon()) {
 			return "You have won!";
@@ -133,5 +121,17 @@ public class ScopaGameApplicationService implements CardGameService {
 			return "Game over; nobody won!";
 		}
 		return "Play a card";
+	}
+
+	private boolean opponentHasMoreCards() {
+		return humanPlayer.showCaptures().size() < computerPlayer.showCaptures().size();
+	}
+
+	private boolean opponentHasLessCards() {
+		return humanPlayer.showCaptures().size() > computerPlayer.showCaptures().size();
+	}
+
+	private boolean itsOverNobodyWon() {
+		return isOver() && humanPlayer.showCaptures().size() == computerPlayer.showCaptures().size();
 	}
 }

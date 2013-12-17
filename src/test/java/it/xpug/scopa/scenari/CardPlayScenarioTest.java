@@ -11,8 +11,7 @@ public class CardPlayScenarioTest {
 	private static final Card TWO_OF_WANDS = Card.parse("wands-02");
 	private static final Card FIVE_OF_WANDS = Card.parse("wands-05");
 	private static final Card FIVE_OF_CUPS = Card.parse("cups-05");
-	
-	
+
 	@Test
 	public void playingANonMatchingCard() throws Exception {
 		 givenCardsOnTheTable(TWO_OF_WANDS);
@@ -28,13 +27,8 @@ public class CardPlayScenarioTest {
 		 thenMyCapturedCardsAre(FIVE_OF_WANDS, FIVE_OF_CUPS);
 		 thenTheTableContains();
 	}
-	
 
 	protected ScopaTable table = new ScopaTable();
-
-	protected void theCountOfCapturedCardsIs(int count) {
-		assertEquals("count of captured cards", count, table.capturedCards().size());
-	}
 
 	protected void thenTheTableContains(Card ... expected) {
 		assertEquals("table", new CardSet(expected), table.cards());

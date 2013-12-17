@@ -8,54 +8,50 @@ import org.junit.*;
 public class ScopaGameApplicationServiceTest {
 
 	Deck deck = new Deck();
+	ScopaGameApplicationService game = new ScopaGameApplicationService(deck);
 
 	@Test
 	public void canRestartTheGameAsManyTimesAsWeWant() {
-		ScopaGameApplicationService scopaGameApplicationService = new ScopaGameApplicationService();
 		for (int i = 0; i < 10; i++) {
-			scopaGameApplicationService.onStartNewGame();
+			game.onStartNewGame();
 		}
 	}
 
 	@Test
 	public void whenGameStarts_bothPlayersAndTableAreDealt() throws Exception {
-		Deck deck = new Deck();
-		ScopaGameApplicationService scopaGameApplicationService = new ScopaGameApplicationService(deck);
-		scopaGameApplicationService.onStartNewGame();
-		assertEquals(3, scopaGameApplicationService.getPlayerHand().size());
-		assertEquals(3, scopaGameApplicationService.getCountOfOpponentHand());
-		assertEquals(4, scopaGameApplicationService.getTable().size());
+		game.onStartNewGame();
+		assertEquals(3, game.getPlayerHand().size());
+		assertEquals(3, game.getCountOfOpponentHand());
+		assertEquals(4, game.getTable().size());
 	}
 
 	@Test
 	public void afterHumanPlays_computerResponds() throws Exception {
-		ScopaGameApplicationService scopaGameApplicationService = new ScopaGameApplicationService();
-		scopaGameApplicationService.onStartNewGame();
+		game.onStartNewGame();
 
-		scopaGameApplicationService.onCardPlayed(scopaGameApplicationService.getPlayerHand().get(0));
+		game.onCardPlayed(game.getPlayerHand().get(0));
 
-		assertEquals(2, scopaGameApplicationService.getPlayerHand().size());
-		assertEquals(2, scopaGameApplicationService.getOpponentHand().size());
-		assertEquals(2, scopaGameApplicationService.getCountOfOpponentHand());
+		assertEquals(2, game.getPlayerHand().size());
+		assertEquals(2, game.getOpponentHand().size());
+		assertEquals(2, game.getCountOfOpponentHand());
 	}
 
 	@Test
 	public void aNewGame_isNotFinished() throws Exception {
-		ScopaGameApplicationService scopaGameApplicationService = new ScopaGameApplicationService();
-		scopaGameApplicationService.onStartNewGame();
-		assertFalse("game is not over", scopaGameApplicationService.isOver());
+		game.onStartNewGame();
+		assertFalse("game is not over", game.isOver());
 	}
 
 	@Test
 	public void whenBothPlayersHaveNoCardsAndDeckIsEmpty_gameIsOver() throws Exception {
-		ScopaGameApplicationService scopaGameApplicationService = new ScopaGameApplicationService(Deck.EMPTY, playerWithEmtpyHand(), new ScopaTable());
-		assertTrue("game is over", scopaGameApplicationService.isOver());
+		ScopaGameApplicationService game = new ScopaGameApplicationService(Deck.EMPTY, playerWithEmtpyHand(), new ScopaTable());
+		assertTrue("game is over", game.isOver());
 	}
 
 	@Test
 	public void ifAPlayerHasACard_gameIsNotOver() throws Exception {
-		ScopaGameApplicationService scopaGameApplicationService = new ScopaGameApplicationService(Deck.EMPTY, playerWithOneCard(), new ScopaTable());
-		assertFalse("game is not over", scopaGameApplicationService.isOver());
+		ScopaGameApplicationService game = new ScopaGameApplicationService(Deck.EMPTY, playerWithOneCard(), new ScopaTable());
+		assertFalse("game is not over", game.isOver());
 	}
 
 	@Test
@@ -81,7 +77,6 @@ public class ScopaGameApplicationServiceTest {
 
 	@Test
 	public void opponentHasNotWonWhen_gameNotIsOver() throws Exception {
-		ScopaGameApplicationService game = new ScopaGameApplicationService(deck);
 		Player computerPlayer = aPlayerWithCountOfCapturedCardsOf(2);
 		Player humanPlayer = aPlayerWithCountOfCapturedCardsOf(0);
 		humanPlayer.isDealtOneCard(deck);

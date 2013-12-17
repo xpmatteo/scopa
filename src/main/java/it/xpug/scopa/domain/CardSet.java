@@ -87,5 +87,7 @@ public class CardSet {
 		cards.clear();
 	}
 
-
+	public Card get(int matchIndex) {
+		return cards.get(matchIndex);
+	}
 }

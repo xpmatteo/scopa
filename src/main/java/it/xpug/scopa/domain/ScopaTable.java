@@ -1,10 +1,11 @@
 package it.xpug.scopa.domain;
 
 
+
 public class ScopaTable extends CardSet {
 
 	private CardSet capturedCards;
-	
+
 	public ScopaTable(Card ... cards) {
 		super(cards);
 	}
@@ -23,13 +24,17 @@ public class ScopaTable extends CardSet {
 		CardSet allMatching = this.allMatching(playedCard);
 		if (allMatching.isEmpty()) {
 			this.add(playedCard);
-			capturedCards = new CardSet(); 
+			capturedCards = new CardSet();
 		} else {
-			Card matchingCard = allMatching.first();
-			this.remove(matchingCard);
-			capturedCards = new CardSet(playedCard, matchingCard);
+			capture(playedCard, 0);
 		}
+	}
 
+	public void capture(Card playedCard, int matchIndex) {
+		CardSet allMatching = this.allMatching(playedCard);
+		Card matchingCard = allMatching.get(matchIndex);
+		this.remove(matchingCard);
+		capturedCards = new CardSet(playedCard, matchingCard);
 	}
 
 	public CardSet capturedCards() {
@@ -39,6 +44,4 @@ public class ScopaTable extends CardSet {
 	public CardSet cards() {
 		return new CardSet(cards);
 	}
-	
-
 }
