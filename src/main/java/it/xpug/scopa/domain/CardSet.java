@@ -90,4 +90,8 @@ public class CardSet {
 	public Card get(int matchIndex) {
 		return cards.get(matchIndex);
 	}
+
+	public static CardSet setOf(Card ... cards) {
+		return new CardSet(cards);
+	}
 }
