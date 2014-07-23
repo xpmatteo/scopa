@@ -18,7 +18,7 @@ public class ScopaViewTest {
 
 	@Test
 	public void showsCardsFaceupOnTable() throws Exception {
-		table.add(wands(1));
+		table.add(bastoni(1));
 		assertNodeExists("//div[@id='table']//li[@class='card']//img[@src='/images/cards/wands-01.jpg']");
 	}
 

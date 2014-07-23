@@ -10,17 +10,17 @@ public class CardPlayScenarioTest {
 
 	@Test
 	public void playingANonMatchingCard() throws Exception {
-		 givenCardsOnTheTable(wands(2));
-		 whenIPlay(wands(3));
-		 thenTheTableContains(wands(2), wands(3));
+		 givenCardsOnTheTable(bastoni(2));
+		 whenIPlay(bastoni(3));
+		 thenTheTableContains(bastoni(2), bastoni(3));
 		 thenMyCapturedCardsAre();
 	}
 
 	@Test
 	public void capturingAMatchingCard() throws Exception {
-		 givenCardsOnTheTable(cups(5));
-		 whenIPlay(wands(5));
-		 thenMyCapturedCardsAre(wands(5), cups(5));
+		 givenCardsOnTheTable(coppe(5));
+		 whenIPlay(bastoni(5));
+		 thenMyCapturedCardsAre(bastoni(5), coppe(5));
 		 thenTheTableContains();
 	}
 

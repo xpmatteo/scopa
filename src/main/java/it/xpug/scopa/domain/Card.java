@@ -61,7 +61,7 @@ public class Card {
 		return this.toString().hashCode();
 	}
 
-	public static Card wands(int rank) {
+	public static Card bastoni(int rank) {
 		return new Card(rank, Suit.WANDS);
 	}
 
@@ -69,7 +69,7 @@ public class Card {
 		return new Card(rank, Suit.SWORDS);
 	}
 
-	public static Card cups(int rank) {
+	public static Card coppe(int rank) {
 		return new Card(rank, Suit.CUPS);
 	}
 

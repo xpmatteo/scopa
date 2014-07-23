@@ -11,22 +11,22 @@ public class CardTest {
 
 	@Test
 	public void canBeCreatedFromParam() throws Exception {
-		assertEquals(wands(3).toString(), Card.parse("wands-03").toString());
+		assertEquals(bastoni(3).toString(), Card.parse("wands-03").toString());
 	}
 
 	@Test
 	public void returnsItsParam() throws Exception {
-		assertEquals("wands-03", wands(3).toParam());
+		assertEquals("wands-03", bastoni(3).toParam());
 	}
 
 	@Test
 	public void cardsWithSameRank_match() throws Exception {
-		assertThat(cups(7), isMatching(swords(7)));
+		assertThat(coppe(7), isMatching(swords(7)));
 	}
 
 	@Test
 	public void cardsWithDifferentRank_doNotMatch() throws Exception {
-		assertThat(cups(7), not(isMatching(cups(5))));
+		assertThat(coppe(7), not(isMatching(coppe(5))));
 	}
 
 	@Test
@@ -36,14 +36,14 @@ public class CardTest {
 
 	@Test
 	public void hasItalianName() throws Exception {
-		assertEquals("2 di coppe", cups(2).name());
-		assertEquals("3 di bastoni", wands(3).name());
+		assertEquals("2 di coppe", coppe(2).name());
+		assertEquals("3 di bastoni", bastoni(3).name());
 		assertEquals("4 di denari", coins(4).name());
 		assertEquals("5 di spade", swords(5).name());
 		assertEquals("Asso di spade", swords(1).name());
 		assertEquals("Fante di denari", coins(8).name());
-		assertEquals("Cavallo di bastoni", wands(9).name());
-		assertEquals("Re di coppe", cups(10).name());
+		assertEquals("Cavallo di bastoni", bastoni(9).name());
+		assertEquals("Re di coppe", coppe(10).name());
 	}
 
 	@Test
